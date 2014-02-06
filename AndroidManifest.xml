@@ -2185,14 +2185,6 @@
             </intent-filter>
         </receiver>
 
-        <!-- L-Droid Extra info -->
-        <activity android:name="com.android.settings.ldroid.extrainfo.MainActivity"
-                  android:theme="@android:style/Theme.Holo.Dialog.NoActionBar.MinWidth">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
         <activity
             android:name="com.android.settings.ldroid.SystemappRemover"
             android:label="@string/sizer_title"

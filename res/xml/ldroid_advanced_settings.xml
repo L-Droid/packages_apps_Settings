@@ -62,6 +62,12 @@
     <PreferenceScreen
         android:title="@string/superuser"
         android:fragment="com.koushikdutta.superuser.PolicyNativeFragment" />
+		
+    <PreferenceScreen
+        android:id="@+id/system_app_remover"
+        android:title="@string/sizer_title"
+        android:layout="@layout/preference_systemappremover"
+        android:fragment="com.android.settings.liquid.SystemappRemover" />
 
     <!-- Wakelock blocker -->
     <PreferenceScreen
