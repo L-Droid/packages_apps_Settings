@@ -29,7 +29,11 @@
         android:layout_marginEnd="6dip"
         android:layout_height="wrap_content">
         <ImageView
+<<<<<<< HEAD
             android:src="@drawable/ic_ldroid_download"
+=======
+            android:src="@drawable/ic_dt_download"
+>>>>>>> 6be50b2... L-Droid Download Center
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />

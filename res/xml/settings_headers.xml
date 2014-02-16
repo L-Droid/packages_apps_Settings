@@ -90,6 +90,13 @@
     <header android:id="@+id/advanced_section"
 	    android:title="@string/advanced_category_title" />
 
+    <!-- Download centre -->
+    <header
+        android:key="download_center"
+        android:fragment="com.android.settings.ldroid.Download"
+        android:title="@string/download_category"
+        android:icon="@drawable/ic_ldroid_download" />
+
     <!-- Theme settings -->
     <header
         android:id="@+id/theme_settings_trds"
@@ -284,6 +291,17 @@
         android:fragment="com.android.settings.DevelopmentSettings"
         android:icon="@drawable/ic_settings_development"
         android:title="@string/development_settings_title" />
+
+    <!-- Kernel Tweaker -->
+    <header
+        android:id="@+id/kernel_tweaker"
+        android:title="@string/kernel_tweaker_title"
+        android:icon="@drawable/ic_ldroid_performance" >
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetClass="com.dsht.kerneltweaker.MainActivity"
+            android:targetPackage="com.dsht.kerneltweaker" />
+	</header>
 
     <!-- Kernel Tweaker -->
     <header
