@@ -9,6 +9,13 @@
     <PreferenceCategory 
         android:title="@string/ui_category_title" />
 
+    <!-- Driving mode -->
+    <PreferenceScreen
+        android:key="interface_voice_tts"
+        android:fragment="com.android.settings.ldroid.DrivingMode"
+        android:icon="@drawable/ic_settings_drivingmode"
+        android:title="@string/voice_tts_title" />
+
     <!-- Gesture anywhere -->
     <PreferenceScreen
         android:key="gesture_anywhere"

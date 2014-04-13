@@ -140,7 +140,6 @@ public class GeneralSettings extends SettingsPreferenceFragment implements
 	} else if (preference == mShowCpuInfo) {
             writeCpuInfoOptions();
         }
-
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 

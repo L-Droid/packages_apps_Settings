@@ -1893,6 +1893,21 @@
 
         <activity android:name=".chameleonos.labs.gestureanywhere.GestureAnywhereBuilderActivity" />
 
+        <activity android:name=".ldroid.gestureanywhere.GestureAnywhereBuilderActivity" />
+
+        <receiver android:name=".tts.IntentReceiver" >
+            <intent-filter>
+                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                 <action android:name="android.intent.action.PHONE_STATE" />
+                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                 <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+                 <action android:name="com.android.settings.tts.action.SPEAK_NOTIFICATION" />
+                 <action android:name="com.android.settings.tts.action.SPEAK_MUSIC" />
+                 <action android:name="com.android.settings.tts.action.RUN_DRIVEMODE" />
+            </intent-filter>
+        </receiver>
+
         <activity android:name=".chameleonos.labs.gestureanywhere.GestureAnywhereCreateGestureActivity" />
 
         <activity android:name=".profiles.NFCProfile"
