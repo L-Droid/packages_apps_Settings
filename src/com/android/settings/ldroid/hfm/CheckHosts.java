@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.hfm;
+package com.android.settings.ldroid.hfm;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;

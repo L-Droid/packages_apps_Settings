@@ -2216,12 +2216,14 @@
         </receiver>
 
         <receiver android:name=".hfm.IntentReceiver" >
+
+        <receiver android:name="com.android.settings.ldroid.hfm.IntentReceiver" >
             <intent-filter>
                  <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <service android:name=".hfm.CheckHosts" />
+        <service android:name="com.android.settings.liquid.hfm.CheckHosts" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
