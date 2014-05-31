@@ -1470,7 +1470,7 @@
     <string name="floating_blacklist_label">Blacklist from Floating Mode</string>
     <string name="hover_blacklist_label">Blacklist from Hover</string>
     <string name="peek_blacklist_label">Blacklist from Peek</string>
-	
+
     <!-- L-Droid Extra Info -->
     <string name="ldroidextrainfo">Extra information</string>
     <string name="ldroidextrainfo_summary">Display extra info for cpu, display, etc</string>
@@ -1544,5 +1544,11 @@
     <string name="sizer_message_filesuccess">Created profile.</string>
     <string name="sizer_message_filefail">Failed to create profile.</string>
     <string name="sizer_message_noselect">Nothing selected.</string>
+	
+    <!-- Sizes for pattern lockscreen -->
+    <string name="lock_pattern_size_7">7x7</string>
+    <string name="lock_pattern_size_8">8x8</string>
+    <string name="lock_pattern_size_9">9x9</string>
+    <string name="lock_pattern_size_10">10x10</string>
 
 </resources>
