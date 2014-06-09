@@ -32,6 +32,7 @@ import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.util.SparseBooleanArray;
@@ -54,10 +55,12 @@ public class PrivacySettings extends SettingsPreferenceFragment implements
     private static final String BACKUP_CATEGORY = "backup_category";
     private static final String BACKUP_DATA = "backup_data";
     private static final String AUTO_RESTORE = "auto_restore";
+    private static final String RESET_PREFERENCES = "user_preferences_reset";
     private static final String CONFIGURE_ACCOUNT = "configure_account";
     private IBackupManager mBackupManager;
     private CheckBoxPreference mBackup;
     private CheckBoxPreference mAutoRestore;
+    private Preference mResetUserPreferences;
     private Dialog mConfirmDialog;
     private PreferenceScreen mConfigure;
 
@@ -81,6 +84,7 @@ public class PrivacySettings extends SettingsPreferenceFragment implements
         mResetUserPreferences = screen.findPreference(RESET_PREFERENCES);
         mResetUserPreferences.setOnPreferenceClickListener(new OnPreferenceClickListener() {
              public boolean onPreferenceClick(Preference preference) {
+<<<<<<< HEAD
                 updateActiveCustomPreferences();
                 if (customPrefs.size() > 1) {
                     showResetList();
