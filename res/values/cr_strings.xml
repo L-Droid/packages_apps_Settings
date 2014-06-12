@@ -1470,6 +1470,10 @@
     <string name="floating_blacklist_label">Blacklist from Floating Mode</string>
     <string name="hover_blacklist_label">Blacklist from Hover</string>
     <string name="peek_blacklist_label">Blacklist from Peek</string>
+	
+    <!-- L-Droid Extra Info -->
+    <string name="ldroidextrainfo">Extra information</string>
+    <string name="ldroidextrainfo_summary">Display extra info for cpu, display, etc</string>
 
     <!-- L-Droid Extra Info -->
     <string name="ldroidextrainfo">Extra information</string>
