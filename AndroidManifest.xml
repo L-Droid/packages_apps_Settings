@@ -1985,6 +1985,14 @@
             </intent-filter>
         </activity>
 
+        <!-- L-Droid Extra info -->
+        <activity android:name="com.android.settings.ldroid.extrainfo.MainActivity"
+                  android:theme="@android:style/Theme.Holo.Dialog.NoActionBar.MinWidth">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
         <!-- RAM bar -->
         <activity android:name="Settings$ASSRamBarActivity"
                 android:label="@string/ram_bar">
