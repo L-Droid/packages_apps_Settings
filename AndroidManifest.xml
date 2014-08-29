@@ -1977,6 +1977,14 @@
 
         <activity android:name=".ldroid.Download" />
 
+        <activity android:name="PartitionInfo" android:label="@string/partition_info_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.VOICE_LAUNCH" />
+            </intent-filter>
+        </activity>
+
         <!-- RAM bar -->
         <activity android:name="Settings$ASSRamBarActivity"
                 android:label="@string/ram_bar">
