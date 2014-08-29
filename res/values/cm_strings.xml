@@ -472,7 +472,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="root_access_all">Apps and ADB</string>
 
     <!-- Settings checkbox for updating CM recovery on boot -->
-    <string name="update_recovery_title">Update CM recovery</string>
+    <string name="update_recovery_title">Update recovery</string>
     <string name="update_recovery_summary">Update recovery when installing system updates</string>
 
     <string name="ok">OK</string>
@@ -505,7 +505,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="end_time_title">End</string>
 
     <!-- About phone screen,  setting option name -->
-    <string name="mod_version">CyanogenMod version</string>
+    <string name="mod_version">L-Droid version</string>
     <string name="mod_version_default">Unknown</string>
     <!-- About phone screen, build date of ROM -->
     <string name="build_date">Build date</string>
