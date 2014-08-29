@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/ldroid_vault_title"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+
+    <!-- User interface -->
+    <PreferenceCategory 
+        android:title="@string/ui_category_title" />
+
+    <!-- Driving mode -->
+    <PreferenceScreen
+        android:key="interface_voice_tts"
+        android:fragment="com.android.settings.ldroid.DrivingMode"
+        android:icon="@drawable/ic_settings_drivingmode"
+        android:title="@string/voice_tts_title" />
+
+    <!-- Gesture anywhere -->
+    <PreferenceScreen
+        android:key="gesture_anywhere"
+        android:fragment="com.android.settings.chameleonos.labs.gestureanywhere.GestureAnywhereSettings"
+        android:icon="@drawable/ic_settings_gesture_anywhere"
+        android:title="@string/gesture_anywhere_title" />
+
+    <!-- Lock screen -->
+    <PreferenceScreen
+        android:key="lockscreen_settings"
+        android:title="@string/lockscreen_settings_title"
+        android:fragment="com.android.settings.cyanogenmod.LockscreenSettings"
+        android:icon="@drawable/ic_ldroid_lockscreen" />
+
+    <!-- Navigation -->
+    <PreferenceScreen
+        android:key="@+id/navigation_settings"
+        android:icon="@drawable/ic_settings_navigation"
+        android:fragment="com.android.settings.ldroid.NavigationSettings"
+        android:title="@string/navigation_settings_title" />
+
+    <!-- Notification panel -->
+    <PreferenceScreen
+        android:key="notification_drawer"
+        android:fragment="com.android.settings.cyanogenmod.NotificationDrawer"
+        android:title="@string/notification_drawer_title" 
+        android:icon="@drawable/ic_settings_notifications" />
+
+    <!-- Statusbar -->
+    <PreferenceScreen
+        android:key="statusbar_settings"
+        android:fragment="com.android.settings.ldroid.StatusBar"
+        android:title="@string/statusbar_settings_title"
+        android:icon="@drawable/ic_network_signal_4" />
+
+    <!-- Notifications -->
+    <PreferenceCategory 
+        android:title="@string/notification_category_title" />
+
+    <!-- Active display 
+    <PreferenceScreen
+        android:key="active_display"
+        android:title="@string/active_display_title"
+        android:fragment="com.android.settings.ldroid.ActiveDisplaySettings"
+        android:icon="@drawable/ic_ldroid_active_display" /> -->
+
+    <!-- Headsup -->
+    <PreferenceScreen
+        android:key="headsup_settings"
+        android:title="@string/heads_up_title"
+        android:icon="@drawable/ic_heads_up"
+        android:fragment="com.android.settings.crdroid.HeadsUpSettings" />
+
+    <!-- Hover -->
+    <PreferenceScreen
+        android:key="hover_settings"
+        android:title="@string/hover_settings_title"
+        android:icon="@drawable/ic_notify_hover_pressed"
+        android:fragment="com.android.settings.crdroid.HoverSettings" />
+
+    <!-- Lockscreen Notifications & Peek -->
+    <PreferenceScreen
+        android:title="@string/lockscreen_notifications_header"
+        android:fragment="com.android.settings.crdroid.LockscreenNotifications"
+        android:summary="@string/notifications_on_lockscreen_summary" 
+        android:icon="@drawable/ic_settings_interface" />
+
+    <!-- App launchers -->
+    <PreferenceCategory 
+        android:title="@string/applauncher_category_title" />
+
+    <!-- App sidebar -->
+    <PreferenceScreen
+        android:key="app_sidebar"
+        android:fragment="com.android.settings.crdroid.AppSidebar"
+        android:icon="@drawable/ic_ldroid_app_sidebar"
+        android:title="@string/app_sidebar_title"/>
+
+    <!-- Look and feel -->
+    <PreferenceCategory 
+        android:title="@string/lookandfeel_category_title" />
+
+    <!-- Animations settings -->
+    <PreferenceScreen
+        android:key="animations_settings"
+        android:fragment="com.android.settings.ldroid.AnimationsSettings"
+        android:title="@string/ldroid_animations_settings_title"
+        android:icon="@drawable/ic_ldroid_animations" />
+
+    <!-- Identicons -->
+    <PreferenceScreen
+        android:key="identicons"
+        android:fragment="com.android.settings.chameleonos.labs.identicons.IdenticonsSettings"
+        android:icon="@drawable/ic_settings_identicons"
+        android:title="@string/identicons_title" />
+
+    <!-- System -->
+    <PreferenceCategory 
+        android:title="@string/system_category_title" />
+
+    <!-- General settings -->
+    <PreferenceScreen
+        android:key="general_settings"
+        android:fragment="com.android.settings.ldroid.GeneralSettings"
+        android:title="@string/general_settings_title"
+        android:icon="@drawable/ic_ldroid_general" />
+
+    <!-- Advanced options -->
+    <PreferenceScreen
+        android:key="advanced_settings"
+        android:fragment="com.android.settings.ldroid.AdvancedSettings"
+        android:icon="@drawable/ic_settings_init"
+        android:title="@string/advanced_options_title" />
+
+</PreferenceScreen>

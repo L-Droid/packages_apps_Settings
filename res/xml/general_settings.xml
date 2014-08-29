@@ -20,10 +20,10 @@
             android:entryValues="@array/media_scanner_on_boot_values" />
 
         <PreferenceScreen
-            android:key="identicons"
-            android:fragment="com.android.settings.chameleonos.labs.identicons.IdenticonsSettings"
-            android:icon="@drawable/ic_settings_identicons"
-            android:title="@string/identicons_title" />
+            android:key="recent_panel"
+            android:title="@string/recent_panel_title"
+            android:summary="@string/recent_panel_summary"
+            android:fragment="com.android.settings.ldroid.RecentPanelSettings" />
 
 	<!-- CPU info overlay -->
 	<CheckBoxPreference
