@@ -1975,6 +1975,8 @@
 
         <service android:name=".tts.NotifyService" />
 
+        <activity android:name=".ldroid.Download" />
+
         <!-- RAM bar -->
         <activity android:name="Settings$ASSRamBarActivity"
                 android:label="@string/ram_bar">
