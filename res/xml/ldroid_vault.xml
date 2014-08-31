@@ -55,13 +55,6 @@
     <PreferenceCategory 
         android:title="@string/notification_category_title" />
 
-    <!-- Active display 
-    <PreferenceScreen
-        android:key="active_display"
-        android:title="@string/active_display_title"
-        android:fragment="com.android.settings.ldroid.ActiveDisplaySettings"
-        android:icon="@drawable/ic_ldroid_active_display" /> -->
-
     <!-- Headsup -->
     <PreferenceScreen
         android:key="headsup_settings"

@@ -261,6 +261,15 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
     @Override
     public void onResume() {
         super.onResume();
+        updateSettings();
+        mSettingsObserver.observe();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().getContentResolver().unregisterContentObserver(mSettingsObserver);
+    }
 
     private void updateSettings() {
         boolean enableNavigationBar = Settings.System.getInt(getContentResolver(),

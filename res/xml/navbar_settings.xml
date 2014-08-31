@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012 ldroidroms Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+       <CheckBoxPreference
+            android:key="enable_nav_bar"
+            android:title="@string/navbar_enable_bar"
+            android:summary="@string/navbar_enable_bar_summary" />
+
+	<PreferenceScreen
+            android:key="navbar_dimen_settings"
+            android:fragment="com.android.settings.crdroid.NavbarDimenSettings"
+            android:title="@string/navbar_style_dimen_title"
+	    android:dependency="enable_nav_bar" />
+
+        <PreferenceScreen
+            android:key="navigation_bar"
+            android:fragment="com.android.settings.cyanogenmod.NavBar"
+            android:title="@string/navigation_bar_title"
+            android:dependency="enable_nav_bar" />
+
+        <Preference
+            android:fragment="com.android.settings.crdroid.NavBarLongPressActions"
+            android:key="navbar_custom_actions"
+            android:title="@string/navbar_long_press_title"
+            android:dependency="enable_nav_bar" />
+
+        <PreferenceScreen
+            android:key="navigation_ring"
+            android:fragment="com.android.settings.cyanogenmod.NavRing"
+            android:title="@string/navigation_ring_title"
+	    android:dependency="enable_nav_bar" />
+
+        <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
+            android:key="navigation_bar_left"
+            android:title="@string/navigation_bar_left_title"
+            android:summary="@string/navigation_bar_left_summary"
+            android:defaultValue="false"
+            android:dependency="enable_nav_bar" />
+
+        <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
+            android:key="navigation_bar_menu_arrow_keys"
+            android:title="@string/navigation_bar_arrow_keys_title"
+            android:summary="@string/navigation_bar_arrow_keys_summary"
+            android:defaultValue="true"
+            android:dependency="enable_nav_bar" />
+
+        <PreferenceCategory
+            android:key="hw_keys_on_navbar"
+            android:title="@string/hw_keys_title">
+
+            <CheckBoxPreference
+                android:key="key_back_enabled"
+                android:title="@string/key_back_enabled"
+                android:defaultValue="true" />
+
+            <CheckBoxPreference
+                android:key="key_menu_enabled"
+                android:title="@string/key_menu_enabled"
+                android:defaultValue="true" />
+
+            <CheckBoxPreference
+                android:key="key_home_enabled"
+                android:title="@string/key_home_enabled"
+                android:defaultValue="true" />
+
+        </PreferenceCategory>
+
+</PreferenceScreen>

@@ -35,8 +35,8 @@
 		
         <!-- L-Droid Extra Info -->
         <PreferenceScreen android:key="extrainfo"
-                android:title="@string/lsextrainfo"
-                android:summary="@string/lsextrainfo_summary">
+                android:title="@string/ldroidextrainfo"
+                android:summary="@string/ldroidextrainfo_summary">
             <intent android:action="android.intent.action.MAIN"
                     android:targetPackage="com.android.settings"
                     android:targetClass="com.android.settings.ldroid.extrainfo.MainActivity" />

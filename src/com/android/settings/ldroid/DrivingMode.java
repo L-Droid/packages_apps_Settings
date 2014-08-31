@@ -41,7 +41,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.android.settings.ldroid.SeekBarPreference;
-import com.android.settings.ldroid.AppMultiSelectListPreference;
+import com.android.settings.crdroid.AppMultiSelectListPreference;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.tts.IntentReceiver;
 import com.android.settings.R;

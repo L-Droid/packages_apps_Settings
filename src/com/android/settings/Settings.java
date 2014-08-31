@@ -86,12 +86,12 @@ import com.android.settings.applications.ProcessStatsUi;
 import com.android.settings.blacklist.BlacklistSettings;
 import com.android.settings.bluetooth.BluetoothEnabler;
 import com.android.settings.bluetooth.BluetoothSettings;
+import com.android.settings.crdroid.HoverSettings;
 import com.android.settings.cyanogenmod.ButtonSettings;
 import com.android.settings.cyanogenmod.LockscreenInterface;
 import com.android.settings.cyanogenmod.NavBar;
 import com.android.settings.cyanogenmod.NavRing;
 import com.android.settings.cyanogenmod.PerformanceSettings;
-import com.android.settings.cyanogenmod.StatusBar;
 import com.android.settings.cyanogenmod.NotificationDrawer;
 import com.android.settings.cyanogenmod.superuser.PolicyNativeFragment;
 import com.android.settings.deviceinfo.Memory;
@@ -102,6 +102,8 @@ import com.android.settings.inputmethod.InputMethodAndLanguageSettings;
 import com.android.settings.inputmethod.KeyboardLayoutPickerFragment;
 import com.android.settings.inputmethod.SpellCheckersSettings;
 import com.android.settings.inputmethod.UserDictionaryList;
+import com.android.settings.ldroid.StatusBar;
+import com.android.settings.ldroid.LDroidVault;
 import com.android.settings.location.LocationEnabler;
 import com.android.settings.location.LocationSettings;
 import com.android.settings.net.MobileDataEnabler;
@@ -208,12 +210,11 @@ public class Settings extends PreferenceActivity
             R.id.print_settings,
             R.id.nfc_payment_settings,
             R.id.home_settings,
-            R.id.interface_section,
-            R.id.status_bar_settings,
-            R.id.notification_bar_settings,
-            R.id.lock_screen_settings,
+            R.id.ldroid_vault,
+            R.id.theme_chooser,
+            R.id.theme_settings_trds,
             R.id.privacy_settings_cyanogenmod,
-            R.id.button_settings
+            R.id.download_center
     };
 
     private SharedPreferences mDevelopmentPreferences;
@@ -485,7 +486,9 @@ public class Settings extends PreferenceActivity
         com.android.settings.cyanogenmod.PrivacySettings.class.getName(),
         com.android.settings.quicksettings.QuickSettingsTiles.class.getName(),
         com.android.settings.cyanogenmod.QuietHours.class.getName(),
-        ThemeSettings.class.getName()
+        ThemeSettings.class.getName(),
+        LDroidVault.class.getName(),
+        HoverSettings.class.getName()
     };
 
     @Override
@@ -713,8 +716,7 @@ public class Settings extends PreferenceActivity
             Header header = target.get(i);
             // Ids are integers, so downcasting
             int id = (int) header.id;
-            if (id == R.id.operator_settings || id == R.id.manufacturer_settings ||
-                    id == R.id.advanced_settings || id == R.id.device_specific_gesture_settings) {
+            if (id == R.id.operator_settings || id == R.id.manufacturer_settings) {
                 Utils.updateHeaderToSpecificActivityFromMetaDataOrRemove(this, target, header);
             } else if (id == R.id.wifi_settings) {
                 // Remove WiFi Settings if WiFi service is not available.
@@ -790,16 +792,13 @@ public class Settings extends PreferenceActivity
                 if (um.hasUserRestriction(UserManager.DISALLOW_MODIFY_ACCOUNTS)) {
                     target.remove(i);
                 }
-            } else if (id == R.id.superuser) {
-                if (!DevelopmentSettings.isRootForAppsEnabled()) {
-                    target.remove(i);
-                }
             } else if (id == R.id.multi_sim_settings) {
                 if (!MSimTelephonyManager.getDefault().isMultiSimEnabled())
                     target.remove(header);
             } else if (id == R.id.voice_wakeup_settings) {
                 if(!Utils.isPackageInstalled(this, VOICE_WAKEUP_PACKAGE_NAME)) {
                     target.remove(header);
+		}
             } else if (id == R.id.kernel_tweaker) {
                 // Embedding into Settings only if app exists (user could manually remove it)
                 boolean supported = false;
@@ -1286,7 +1285,7 @@ public class Settings extends PreferenceActivity
 
         // a temp hack while we prepare to switch
         // to the new theme chooser.
-        if (header.id == R.id.theme_settings) {
+        if (header.id == R.id.theme_chooser) {
             try {
                 Intent intent = new Intent();
                 intent.setClassName("com.tmobile.themechooser", "com.tmobile.themechooser.ThemeChooser");
@@ -1434,4 +1433,6 @@ public class Settings extends PreferenceActivity
     public static class QuietHoursSettingsActivity extends Settings { /* empty */ }
     public static class ASSRamBarActivity extends Settings { /* empty */ }
     public static class ThemeSettingsActivity extends Settings { /* empty */ }
+    public static class LDroidVaultActivity extends Settings { /* empty */ }
+    public static class HoverSettingsActivity extends Settings { /* empty */ }
 }
