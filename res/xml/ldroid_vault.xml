@@ -73,7 +73,6 @@
     <PreferenceScreen
         android:title="@string/lockscreen_notifications_header"
         android:fragment="com.android.settings.crdroid.LockscreenNotifications"
-        android:summary="@string/notifications_on_lockscreen_summary" 
         android:icon="@drawable/ic_settings_interface" />
 
     <!-- App launchers -->

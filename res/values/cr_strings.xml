@@ -105,9 +105,6 @@
     <string name="additional_options_title">Additional options</string>
     <string name="shortcut_action_help_app">app</string>
 
-    <!-- Hover & Heads Up Notifications -->
-    <string name="crdroid_notifications_title">Notification services</string>
-
     <!-- QS and navring Power menu -->
     <string name="title_tile_power">Power Menu</string> 
     <string name="navring_action_power_menu">Power menu</string>       
@@ -1161,6 +1158,12 @@
     <string name="hover_blacklist_label">Blacklist from Hover</string>
 
     <!-- Hover settings -->
+    <string name="hover_enabled_title">HOVER</string>
+    <string name="hover_enabled_summary">Enable PA\'s HOVER Notification System</string>
+    <string name="hover_hide_button_title">Hide HOVER-Button</string>
+    <string name="hover_hide_button_summary">Hide the HOVER-Button in the StatusBar</string>
+    <string name="hover_active_title">Activate HOVER</string>
+    <string name="hover_active_summary">This activates HOVER, as replacement of the button in StatusBar</string>
     <string name="hover_settings_title">Hover</string>
     <string name="hover_require_fullscreen_mode_title">Require Fullscreen-Mode</string>
     <string name="hover_require_fullscreen_mode_summary">Only show up when StatusBar is hidden</string>
@@ -1168,6 +1171,7 @@
     <string name="hover_exclude_low_priority_summary">Exclude notifications marked as low priority</string>
     <string name="hover_exclude_non_clearable_title">Exclude non-clearable</string>
     <string name="hover_exclude_non_clearable_summary">Exclude not dismissable notifications</string>
+    <string name="title_tile_hover">Hover</string>
 
     <!-- Hover long fade out delay -->
     <string name="hover_long_fadeout_title">Hover notification time</string>
