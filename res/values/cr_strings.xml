@@ -1555,10 +1555,4 @@
     <string name="lock_pattern_size_9">9x9</string>
     <string name="lock_pattern_size_10">10x10</string>
 
-    <!--User preferences settings-->
-    <string name="personalization">Personalization</string>
-    <string name="reset_user_preferences_title">Reset Swipe left to float</string>
-    <string name="reset_user_preferences_summary">Restores user interface preferences to default values</string>
-    <string name="reset_user_preferences_dialog">Are you sure you want to reset your preference?</string>
-
 </resources>
