@@ -76,11 +76,6 @@
             android:persistent="false"
             android:dependency="see_through" />
 
-        <PreferenceScreen
-            android:title="@string/notifications_on_lockscreen"
-            android:fragment="com.android.settings.crdroid.LockscreenNotifications"
-            android:summary="@string/notifications_on_lockscreen_summary" />
-
     </PreferenceCategory>
 
     <PreferenceCategory

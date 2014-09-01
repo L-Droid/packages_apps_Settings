@@ -84,7 +84,6 @@ public class PrivacySettings extends SettingsPreferenceFragment implements
         mResetUserPreferences = screen.findPreference(RESET_PREFERENCES);
         mResetUserPreferences.setOnPreferenceClickListener(new OnPreferenceClickListener() {
              public boolean onPreferenceClick(Preference preference) {
-<<<<<<< HEAD
                 updateActiveCustomPreferences();
                 if (customPrefs.size() > 1) {
                     showResetList();

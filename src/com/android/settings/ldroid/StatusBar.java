@@ -40,8 +40,9 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.telephony.MSimTelephonyManager;
+import android.util.Log;
 
-import com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference;
+import java.util.List;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -59,7 +60,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private static final String SMS_BREATH = "sms_breath";
     private static final String MISSED_CALL_BREATH = "missed_call_breath";
     private static final String VOICEMAIL_BREATH = "voicemail_breath";
-    private static final String STATUS_BAR_NETWORK_ACTIVITY = "status_bar_network_activity";
 
     private static final String STATUS_BAR_STYLE_HIDDEN = "4";
     private static final String STATUS_BAR_STYLE_TEXT = "6";
@@ -72,7 +72,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private CheckBoxPreference mSMSBreath;
     private CheckBoxPreference mMissedCallBreath;
     private CheckBoxPreference mVoicemailBreath;
-    private CheckBoxPreference mStatusBarNetworkActivity;
 
     private ContentObserver mSettingsObserver;
 
@@ -113,11 +112,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         mVoicemailBreath.setChecked(Settings.System.getInt(resolver,
                 Settings.System.KEY_VOICEMAIL_BREATH, 0) == 1);
         mVoicemailBreath.setOnPreferenceChangeListener(this);
-
-        mStatusBarNetworkActivity = (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_NETWORK_ACTIVITY);
-        mStatusBarNetworkActivity.setChecked(Settings.System.getInt(resolver,
-            Settings.System.STATUS_BAR_NETWORK_ACTIVITY, 0) == 1);
-        mStatusBarNetworkActivity.setOnPreferenceChangeListener(this);
 
         int batteryStyle = Settings.System.getInt(resolver, Settings.System.STATUS_BAR_BATTERY, 0);
         mStatusBarBattery.setValue(String.valueOf(batteryStyle));
@@ -164,6 +158,11 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     }
 
     @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        return true;
+    }
+
+    @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         ContentResolver resolver = getActivity().getContentResolver();
         if (preference == mStatusBarBattery) {
@@ -171,7 +170,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             int index = mStatusBarBattery.findIndexOfValue((String) newValue);
             Settings.System.putInt(resolver, Settings.System.STATUS_BAR_BATTERY, batteryStyle);
             mStatusBarBattery.setSummary(mStatusBarBattery.getEntries()[index]);
-
             enableStatusBarBatteryDependents((String) newValue);
             return true;
         } else if (preference == mStatusBarCmSignal) {
@@ -194,9 +192,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         } else if (preference == mVoicemailBreath) {
             boolean value = (Boolean) newValue;
             Settings.System.putInt(resolver, Settings.System.KEY_VOICEMAIL_BREATH, value ? 1 : 0);
-        } else if (preference == mStatusBarNetworkActivity) {
-            boolean value = (Boolean) newValue;
-            Settings.System.putInt(resolver, Settings.System.STATUS_BAR_NETWORK_ACTIVITY, value ? 1 : 0);
         } else {
             return true;
         }
