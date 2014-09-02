@@ -27,7 +27,6 @@
     <string name="build_date_default">2012-01-01-0000</string>
 
     <!-- Category titles -->
-
     <string name="additional_category_title">Additional</string>
     <string name="themes_settings_title">Themes</string>
     <string name="general_category_title">General</string>
