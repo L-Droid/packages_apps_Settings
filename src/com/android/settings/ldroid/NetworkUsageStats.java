@@ -1,4 +1,4 @@
-package com.android.settings.temasek;
+package com.android.settings.ldroid;
 
 import android.app.Activity;
 import android.app.AlertDialog;

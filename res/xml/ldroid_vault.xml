@@ -47,7 +47,7 @@
     <!-- Statusbar -->
     <PreferenceScreen
         android:key="statusbar_settings"
-        android:fragment="com.android.settings.ldroid.StatusBar"
+        android:fragment="com.android.settings.cyanogenmod.StatusBar"
         android:title="@string/statusbar_settings_title"
         android:icon="@drawable/ic_network_signal_4" />
 

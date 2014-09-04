@@ -102,7 +102,7 @@ import com.android.settings.inputmethod.InputMethodAndLanguageSettings;
 import com.android.settings.inputmethod.KeyboardLayoutPickerFragment;
 import com.android.settings.inputmethod.SpellCheckersSettings;
 import com.android.settings.inputmethod.UserDictionaryList;
-import com.android.settings.ldroid.StatusBar;
+import com.android.settings.cyanogenmod.StatusBar;
 import com.android.settings.ldroid.LDroidVault;
 import com.android.settings.location.LocationEnabler;
 import com.android.settings.location.LocationSettings;
