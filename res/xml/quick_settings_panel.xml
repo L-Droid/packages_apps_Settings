@@ -40,7 +40,7 @@
             android:title="@string/title_collapse_panel"
             android:summary="@string/summary_collapse_panel" />
 
-        <CheckBoxPreference
+        <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
             android:key="flip_qs_tiles"
             android:title="@string/flip_qs_tiles_title"
             android:summary="@string/flip_qs_tiles_summary" />
@@ -121,10 +121,11 @@
             android:title="@string/title_dynamic_bugreport"
             android:defaultValue="true" />
 
+	<!--
         <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
             android:key="qs_dyanmic_dock_battery"
             android:title="@string/title_dynamic_dock_battery"
-            android:defaultValue="true" />
+            android:defaultValue="true" /> -->
 
         <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
             android:key="qs_dyanmic_ime"

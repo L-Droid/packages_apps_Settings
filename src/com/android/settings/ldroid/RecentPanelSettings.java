@@ -34,8 +34,8 @@ public class RecentPanelSettings extends SettingsPreferenceFragment implements O
     private static final String TAG = "RecentsPanelSettings";
 
     private static final String CUSTOM_RECENT_MODE = "custom_recent_mode";
-    private static final String RECENT_MENU_CLEAR_ALL = "recent_menu_clear_all";
-    private static final String RECENT_MENU_CLEAR_ALL_LOCATION = "recent_menu_clear_all_location";
+    private static final String CLEAR_RECENTS_BUTTON = "clear_recents_button";
+    private static final String RAM_CIRCLE = "ram_circle";
     private static final String RAM_BAR_MODE = "ram_bar_mode";
     private static final String RAM_BAR_COLOR_APP_MEM = "ram_bar_color_app_mem";
     private static final String RAM_BAR_COLOR_CACHE_MEM = "ram_bar_color_cache_mem";
@@ -87,17 +87,20 @@ public class RecentPanelSettings extends SettingsPreferenceFragment implements O
         mRecentsCustom.setChecked(enableRecentsCustom);
         mRecentsCustom.setOnPreferenceChangeListener(this);
 
-        mRecentClearAll = (CheckBoxPreference) prefSet.findPreference(RECENT_MENU_CLEAR_ALL);
-        mRecentClearAll.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-            Settings.System.SHOW_CLEAR_RECENTS_BUTTON, 1) == 1);
-        mRecentClearAll.setOnPreferenceChangeListener(this);
-        mRecentClearAllPosition = (ListPreference) prefSet.findPreference(RECENT_MENU_CLEAR_ALL_LOCATION);
-        String recentClearAllPosition = Settings.System.getString(getActivity().getContentResolver(), 
-            Settings.System.CLEAR_RECENTS_BUTTON_LOCATION);
-        if (recentClearAllPosition != null) {
-             mRecentClearAllPosition.setValue(recentClearAllPosition);
-        }
-        mRecentClearAllPosition.setOnPreferenceChangeListener(this);    
+        // clear recents position
+        mClearAllButton = (ListPreference) findPreference(CLEAR_RECENTS_BUTTON);
+        int clearStatus = Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.CLEAR_RECENTS_BUTTON, 4);
+        mClearAllButton.setValue(String.valueOf(clearStatus));
+        mClearAllButton.setSummary(mClearAllButton.getEntry());
+        mClearAllButton.setOnPreferenceChangeListener(this);
+
+        mRamCircle = (ListPreference) findPreference(RAM_CIRCLE);
+        int circleStatus = Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.RAM_CIRCLE, 0);
+        mRamCircle.setValue(String.valueOf(circleStatus));
+        mRamCircle.setSummary(mRamCircle.getEntry());
+        mRamCircle.setOnPreferenceChangeListener(this); 
 
         mRamBarMode = (ListPreference) prefSet.findPreference(RAM_BAR_MODE);
         int ramBarMode = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
@@ -207,15 +210,19 @@ public class RecentPanelSettings extends SettingsPreferenceFragment implements O
             updateRecentsOptions();
             Helpers.restartSystemUI();
             return true;
-        } else if (preference == mRecentClearAll) {
-            boolean value = (Boolean) newValue;
-            Settings.System.putInt(getActivity().getContentResolver(), 
-                 Settings.System.SHOW_CLEAR_RECENTS_BUTTON, value ? 1 : 0);
+        } else if (preference == mClearAllButton) {
+            int value = Integer.valueOf((String) objValue);
+            int index = mClearAllButton.findIndexOfValue((String) objValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.CLEAR_RECENTS_BUTTON, value);
+            mClearAllButton.setSummary(mClearAllButton.getEntries()[index]);
             return true;
-        } else if (preference == mRecentClearAllPosition) {
-            String value = (String) newValue;
-            Settings.System.putString(getActivity().getContentResolver(), 
-                 Settings.System.CLEAR_RECENTS_BUTTON_LOCATION, value);
+        } else if (preference == mRamCircle) {
+            int value = Integer.valueOf((String) objValue);
+            int index = mRamCircle.findIndexOfValue((String) objValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.RAM_CIRCLE, value);
+            mRamCircle.setSummary(mRamCircle.getEntries()[index]);
             return true;
         } else if (preference == mRamBarMode) {
             int ramBarMode = Integer.valueOf((String) newValue);

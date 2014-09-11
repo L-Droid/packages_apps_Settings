@@ -29,6 +29,11 @@
             android:summary="@string/screen_security_summary">
         </PreferenceScreen>
 
+    <PreferenceScreen
+            android:key="keyguard_style"
+            android:fragment="com.android.settings.ldroid.ls.LockscreenStyle"
+            android:title="@string/lockscreen_style_title"/>
+
         <ListPreference
             android:key="lockscreen_battery_status"
             android:persistent="false"
@@ -38,11 +43,26 @@
             android:entryValues="@array/lockscreen_battery_status_values"
             android:defaultValue="0" />
         
-        <Preference
-            android:fragment="com.android.settings.cyanogenmod.LockscreenTargets"
-            android:key="lockscreen_targets"
-            android:summary="@string/lockscreen_target_summary"
-            android:title="@string/lockscreen_target_title" />
+    <CheckBoxPreference
+            android:key="battery_around_lockscreen_ring"
+            android:title="@string/battery_around_lockscreen_ring" />
+
+    <CheckBoxPreference
+            android:key="lockscreen_eight_targets"
+            android:title="@string/lockscreen_eight_targets_title"
+            android:summary="@string/lockscreen_eight_targets_summary" />
+
+    <PreferenceScreen
+            android:key="lockscreen_shortcuts"
+            android:fragment="com.android.settings.ldroid.dslv.ButtonsListViewSettings"
+            android:summary="@string/lockscreen_shortcuts_summary"
+            android:title="@string/lockscreen_shortcuts_title">
+        <extra android:name="buttonMode" android:value="4" />
+        <extra android:name="maxAllowedButtons" android:value="5" />
+        <extra android:name="disableLongpress" android:value="true" />
+        <extra android:name="useAppPickerOnly" android:value="true" />
+        <extra android:name="fragment" android:value="com.android.settings.ldroid.ls.LockscreenShortcutFragment" />
+    </PreferenceScreen>
 
         <CheckBoxPreference
             android:key="lock_before_unlock"
@@ -75,6 +95,11 @@
             settings:unitsRight=""
             android:persistent="false"
             android:dependency="see_through" />
+
+    <CheckBoxPreference
+            android:key="lockscreen_torch"
+            android:title="@string/lockscreen_glowpad_torch_title"
+            android:summary="@string/lockscreen_glowpad_torch_summary" />
 
     </PreferenceCategory>
 

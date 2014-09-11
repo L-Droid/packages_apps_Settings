@@ -62,13 +62,6 @@
         android:icon="@drawable/ic_heads_up"
         android:fragment="com.android.settings.crdroid.HeadsUpSettings" />
 
-    <!-- Hover -->
-    <PreferenceScreen
-        android:key="hover_settings"
-        android:title="@string/hover_settings_title"
-        android:icon="@drawable/ic_notify_hover_pressed"
-        android:fragment="com.android.settings.crdroid.HoverSettings" />
-
     <!-- Lockscreen Notifications & Peek -->
     <PreferenceScreen
         android:title="@string/lockscreen_notifications_header"

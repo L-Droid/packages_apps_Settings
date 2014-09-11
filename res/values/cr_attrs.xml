@@ -19,9 +19,15 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <declare-styleable name="SeekBarPreference">
+        <attr name="minm" format="integer" />
         <attr name="minimun" format="integer" />
         <attr name="unitsLeft" format="string|reference" />
         <attr name="unitsRight" format="string|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ListPreferenceMultiSelect">
+    	<attr format="string" name="checkAll" />
+    	<attr format="string" name="separator" />
     </declare-styleable>
 
     <declare-styleable name="SeekBarPreferenceCHOS">
@@ -62,5 +68,11 @@
         <attr name="clickRemoveId" format="integer" />
         <attr name="useDefaultController" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="CheckboxSetting">
+        <attr name="descriptionOn" format="string"/>
+        <attr name="descriptionOff" format="string"/>
+    </declare-styleable>
+
 
 </resources>
