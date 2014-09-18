@@ -65,7 +65,7 @@
             android:key="progressbar_settings"
             android:title="@string/progressbar_title"
             android:summary="@string/progressbar_summary"
-            android:fragment="com.android.settings.cyanogenmod.ProgressBar" />
+            android:fragment="com.android.settings.ldroid.ProgressBar" />
 
         <PreferenceScreen
             android:key="keyboard_animation_scroll"

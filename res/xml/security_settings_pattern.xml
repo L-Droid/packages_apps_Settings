@@ -26,21 +26,6 @@
             android:summary="@string/unlock_set_unlock_mode_pattern"
             android:persistent="false"/>
 
-        <CheckBoxPreference
-            android:key="visiblepattern"
-            android:persistent="false"
-            android:title="@string/lockpattern_settings_enable_visible_pattern_title"/>
-
-        <CheckBoxPreference
-            android:key="visible_error_pattern"
-            android:persistent="false"
-            android:title="@string/lockpattern_settings_enable_error_path_title"/>
-
-        <CheckBoxPreference
-            android:key="visibledots"
-            android:persistent="false"
-            android:title="@string/lockpattern_settings_enable_dots_title"/>
-
         <ListPreference
             android:key="lock_after_timeout"
             android:title="@string/lock_after_timeout"
@@ -50,8 +35,41 @@
             android:persistent="false"/>
 
         <CheckBoxPreference
+            android:key="shake_to_secure"
+            android:title="@string/shake_to_secure_title"
+            android:summary="@string/shake_to_secure_summary" />
+
+        <ListPreference
+            android:key="shake_auto_timeout"
+            android:title="@string/shake_secure_timeout_title"
+            android:dependency="shake_to_secure"
+            android:entries="@array/shake_secure_timeout_entries"
+            android:entryValues="@array/shake_secure_timeout_values"
+            android:persistent="false"/>
+
+        <CheckBoxPreference
+            android:key="lock_before_unlock"
+            android:title="@string/lock_before_unlock_title"
+            android:summary="@string/lock_before_unlock_summary" />
+
+        <CheckBoxPreference
+            android:key="visiblepattern"
+            android:title="@string/lockpattern_settings_enable_visible_pattern_title"/>
+
+        <CheckBoxPreference
             android:key="power_button_instantly_locks"
             android:title="@string/lockpattern_settings_enable_power_button_instantly_locks"/>
+
+        <PreferenceScreen
+            android:key="keyguard_enable_widgets"
+            android:fragment="com.android.settings.ldroid.lockscreen.LockscreenWidgets"
+            android:title="@string/lockscreen_widgets_title"/>
+
+        <PreferenceScreen
+            android:fragment="com.android.settings.OwnerInfoSettings"
+            android:key="owner_info_settings"
+            android:title="@string/owner_info_settings_title"
+            android:summary="@string/owner_info_settings_summary"/>
 
     </PreferenceCategory>
 

@@ -24,7 +24,7 @@
 
         <PreferenceScreen
             android:key="quicksettings_tiles_style"
-            android:fragment="com.android.settings.crdroid.QuickSettingsTilesStyle"
+            android:fragment="com.android.settings.ldroid.quicksettings.QuickSettingsTilesStyle"
             android:title="@string/quicksettings_tiles_style"
             android:summary="@string/summary_quicksettings_tiles_style" />  
 
@@ -35,26 +35,22 @@
             android:entryValues="@array/quick_pulldown_values"
             android:persistent="false" />
 
+        <ListPreference
+            android:key="smart_pulldown"
+            android:title="@string/smart_pulldown_title"
+            android:entries="@array/smart_pulldown_entries"
+            android:entryValues="@array/smart_pulldown_values"
+            android:persistent="false" />
+
         <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
             android:key="qs_collapse_panel"
             android:title="@string/title_collapse_panel"
             android:summary="@string/summary_collapse_panel" />
 
         <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
-            android:key="flip_qs_tiles"
+            android:key="quick_settings_tiles_flip"
             android:title="@string/flip_qs_tiles_title"
-            android:summary="@string/flip_qs_tiles_summary" />
-
-        <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
-            android:key="qs_floating_window"
-            android:title="@string/title_floating_window"
-            android:summary="@string/summary_floating_window" />
-
-        <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
-            android:key="quick_settings_tiles_vibrate"
-            android:title="@string/haptic_qs_tiles_title"
-            android:summary="@string/haptic_qs_tiles_summary"
-            android:defaultValue="false" />
+            android:defaultValue="true" />
 
     </PreferenceCategory>
 
@@ -66,7 +62,7 @@
             android:key="tile_picker"
             android:title="@string/tile_picker_title"
             android:summary="@string/tile_picker_summary"
-            android:fragment="com.android.settings.quicksettings.QuickSettingsTiles" />
+            android:fragment="com.android.settings.ldroid.quicksettings.QuickSettingsTiles" />
 
         <MultiSelectListPreference
             android:key="pref_ring_mode"

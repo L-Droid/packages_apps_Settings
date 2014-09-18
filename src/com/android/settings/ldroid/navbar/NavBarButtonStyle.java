@@ -36,8 +36,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.carbon.fibers.preference.SettingsPreferenceFragment;
-import com.carbon.fibers.R;
+import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.R;
 
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 

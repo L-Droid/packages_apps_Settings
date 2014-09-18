@@ -1,98 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2013 OmniKang
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- http://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- -->
-
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/notifications_on_lockscreen">
-
-    <Preference
-            style="?android:preferenceInformationStyle"
-            android:title="@string/note"
-            android:summary="@string/notifications_on_lockscreen_warning_summary"
-            android:selectable="false" />
-
-    <PreferenceCategory
-        android:title="@string/notification_peek_title" >
-
-         <CheckBoxPreference
-            android:key="notification_peek"
-            android:title="@string/notification_peek_title"
-            android:summary="@string/notification_peek_summary" />
-
-         <ListPreference
-            android:key="peek_pickup_timeout"
-            android:title="@string/peek_pickup_timeout_title"
-            android:entries="@array/peek_pickup_timeout_entries"
-            android:entryValues="@array/peek_pickup_timeout_values"
-            android:dependency="notification_peek" />
-
-         <ListPreference
-            android:key="peek_wake_timeout"
-            android:title="@string/peek_wake_timeout_title"
-            android:entries="@array/peek_wake_timeout_entries"
-            android:entryValues="@array/peek_wake_timeout_values"
-            android:dependency="notification_peek" />
-
-    </PreferenceCategory>
+    android:title="@string/lockscreen_notifications">
 
     <PreferenceCategory
         android:key="category_general"
-        android:title="@string/lockscreen_notifications" >
+        android:title="@string/general" >
         <CheckBoxPreference
             android:key="lockscreen_notifications"
             android:title="@string/lockscreen_notifications"
             android:summary="@string/lockscreen_notifications_summary" />
 
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="notification_color"
+            android:title="@string/notification_color" />
+
         <CheckBoxPreference
             android:key="pocket_mode"
             android:title="@string/pocket_mode"
-            android:dependency="lockscreen_notifications"
             android:summary="@string/pocket_mode_summary" />
 
         <CheckBoxPreference
             android:key="show_always"
             android:title="@string/show_always"
-            android:dependency="lockscreen_notifications"
             android:summary="@string/show_always_summary" />
 
         <CheckBoxPreference
             android:key="wake_on_notification"
             android:title="@string/wake_on_notification"
-            android:dependency="lockscreen_notifications"
             android:summary="@string/wake_on_notification_summary" />
 
         <CheckBoxPreference
             android:key="hide_low_priority"
             android:title="@string/hide_low_priority"
-            android:dependency="lockscreen_notifications"
             android:summary="@string/hide_low_priority_summary" />
 
         <CheckBoxPreference
             android:key="hide_non_clearable"
             android:title="@string/hide_non_clearable"
-            android:dependency="lockscreen_notifications"
             android:summary="@string/hide_non_clearable_summary" />
 
         <CheckBoxPreference
             android:key="dismiss_all"
             android:title="@string/dismiss_all"
-            android:dependency="lockscreen_notifications"
             android:summary="@string/dismiss_all_summary" />
 
-        <com.android.settings.crdroid.AppMultiSelectListPreference
+        <com.android.settings.ldroid.AppMultiSelectListPreference
             android:key="excluded_apps"
             android:persistent="false"
             android:title="@string/excluded_apps_title"
@@ -107,19 +59,13 @@
             android:key="offset_top"
             android:title="@string/offset_top"
             android:max="100"
-            android:dependency="lockscreen_notifications"
             android:defaultValue="30" />
 
-        <com.android.settings.crdroid.NumberPickerPreference
+        <com.android.settings.ldroid.NumberPickerPreference
             android:key="notifications_height"
             android:dialogMessage="@string/notifications_height"
             android:title="@string/notifications_height"
-            android:dependency="lockscreen_notifications"
             android:summary="@string/notifications_height_summary" />
-
-        <net.margaritov.preference.colorpicker.ColorPickerPreference
-            android:key="notification_color"
-            android:title="@string/notification_color" />
 
     </PreferenceCategory>
     <PreferenceCategory
@@ -128,19 +74,16 @@
         <CheckBoxPreference
             android:key="privacy_mode"
             android:title="@string/privacy_mode"
-            android:dependency="lockscreen_notifications"
             android:summary="@string/privacy_mode_summary" />
 
         <CheckBoxPreference
             android:key="expanded_view"
             android:title="@string/expanded_view"
-            android:dependency="lockscreen_notifications"
             android:summary="@string/expanded_view_summary" />
 
         <CheckBoxPreference
             android:key="force_expanded_view"
             android:title="@string/force_expanded_view"
-            android:dependency="lockscreen_notifications"
             android:summary="@string/force_expanded_view_summary" />
     </PreferenceCategory>
 </PreferenceScreen>

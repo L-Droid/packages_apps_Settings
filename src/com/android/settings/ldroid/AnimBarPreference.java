@@ -82,5 +82,4 @@ public class AnimBarPreference extends Preference
     public void onStopTrackingTouch(SeekBar seekBar) {
 
     }
-
 }

@@ -8,16 +8,22 @@
     <PreferenceCategory
         android:title="@string/general_settings_style_title">
 
-        <!-- Restart SystemUI -->
-        <Preference android:key="restart_systemui"
-            android:title="@string/restart_systemui" />
+    <ListPreference
+            android:key="expanded_desktop"
+            android:title="@string/power_menu_expanded_desktop"
+            android:entries="@array/expanded_desktop_entries"
+            android:entryValues="@array/expanded_desktop_values"
+            android:persistent="false" />
 
-        <ListPreference
-            android:key="media_scanner_on_boot"
-            android:title="@string/media_scanner_on_boot_title"
-            android:persistent="false"
-            android:entries="@array/media_scanner_on_boot_entries"
-            android:entryValues="@array/media_scanner_on_boot_values" />
+    <CheckBoxPreference
+            android:key="expanded_desktop_no_navbar"
+            android:title="@string/power_menu_expanded_desktop"
+            android:persistent="true" />
+
+        <PreferenceScreen
+            android:key="installer_settings"
+            android:title="@string/installer_title"
+            android:fragment="com.android.settings.ldroid.installer.InstallerSettingsFragment" />
 
         <PreferenceScreen
             android:key="recent_panel"
@@ -25,11 +31,20 @@
             android:summary="@string/recent_panel_summary"
             android:fragment="com.android.settings.ldroid.RecentPanelSettings" />
 
+        <!-- Restart SystemUI -->
+        <Preference android:key="restart_systemui"
+            android:title="@string/restart_systemui" />
+
 	<!-- CPU info overlay -->
 	<CheckBoxPreference
             android:key="show_cpu_info"
             android:title="@string/show_cpu_info"
             android:summary="@string/show_cpu_info_summary"/>     
+
+        <PreferenceScreen
+            android:key="more_device_settings"
+            android:title="@string/more_device_controls_title"
+            android:fragment="com.android.settings.ldroid.MoreDeviceSettings" />
 
     </PreferenceCategory>
 

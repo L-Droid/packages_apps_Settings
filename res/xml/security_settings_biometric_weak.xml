@@ -31,9 +31,14 @@
             android:title="@string/biometric_weak_improve_matching_title"/>
 
         <CheckBoxPreference
-           android:key="biometric_weak_liveliness"
-           android:title="@string/biometric_weak_liveliness_title"
-           android:summary="@string/biometric_weak_liveliness_summary"/>
+            android:key="biometric_weak_liveliness"
+            android:title="@string/biometric_weak_liveliness_title"
+            android:summary="@string/biometric_weak_liveliness_summary"/>
+
+        <CheckBoxPreference
+            android:key="lock_before_unlock"
+            android:title="@string/lock_before_unlock_title"
+            android:summary="@string/lock_before_unlock_summary" />
 
         <CheckBoxPreference
             android:key="visiblepattern"
@@ -50,6 +55,30 @@
         <CheckBoxPreference
             android:key="power_button_instantly_locks"
             android:title="@string/lockpattern_settings_enable_power_button_instantly_locks"/>
+
+        <CheckBoxPreference
+            android:key="shake_to_secure"
+            android:title="@string/shake_to_secure_title"
+            android:summary="@string/shake_to_secure_summary" />
+
+        <ListPreference
+            android:key="shake_auto_timeout"
+            android:title="@string/shake_secure_timeout_title"
+            android:dependency="shake_to_secure"
+            android:entries="@array/shake_secure_timeout_entries"
+            android:entryValues="@array/shake_secure_timeout_values"
+            android:persistent="false"/>
+
+        <PreferenceScreen
+            android:key="keyguard_enable_widgets"
+            android:fragment="com.android.settings.ldroid.lockscreen.LockscreenWidgets"
+            android:title="@string/lockscreen_widgets_title"/>
+
+        <PreferenceScreen
+            android:fragment="com.android.settings.OwnerInfoSettings"
+            android:key="owner_info_settings"
+            android:title="@string/owner_info_settings_title"
+            android:summary="@string/owner_info_settings_summary"/>
 
     </PreferenceCategory>
 

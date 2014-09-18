@@ -19,9 +19,6 @@ package com.android.settings;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SELinux;
@@ -34,13 +31,14 @@ import android.preference.PreferenceScreen;
 import android.telephony.MSimTelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
-import android.provider.Settings;
 
 import com.android.settings.deviceinfo.msim.MSimStatus;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -61,6 +59,7 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
     private static final String KEY_LICENSE = "license";
     private static final String KEY_COPYRIGHT = "copyright";
     private static final String KEY_SYSTEM_UPDATE_SETTINGS = "system_update_settings";
+    private static final String KEY_LDROID_ABOUT = "about_ldroid";
     private static final String PROPERTY_URL_SAFETYLEGAL = "ro.url.safetylegal";
     private static final String PROPERTY_SELINUX_STATUS = "ro.build.selinux";
     private static final String KEY_KERNEL_VERSION = "kernel_version";
@@ -79,7 +78,9 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
     private static final String KEY_STATUS = "status_info";
 
     static final int TAPS_TO_BE_A_DEVELOPER = 7;
+
     long[] mHits = new long[3];
+    long[] mTaps = new long[3];
     int mDevHitCountdown;
     Toast mDevHitToast;
 
@@ -106,7 +107,7 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
         setStringSummary(KEY_BUILD_NUMBER, Build.DISPLAY);
         findPreference(KEY_BUILD_NUMBER).setEnabled(true);
         findPreference(KEY_KERNEL_VERSION).setSummary(getFormattedKernelVersion());
-        setValueSummary(KEY_MOD_VERSION, "ro.cm.display.version");
+        setValueSummary(KEY_MOD_VERSION, "ro.ldroid.version");
         findPreference(KEY_MOD_VERSION).setEnabled(true);
         setValueSummary(KEY_MOD_BUILD_DATE, "ro.build.date");
 
@@ -177,9 +178,6 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
             Utils.updatePreferenceToSpecificActivityOrRemove(act, parentPreference,
                     KEY_SYSTEM_UPDATE_SETTINGS,
                     Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-            /* Make sure the activity is provided by who we want... */
-            if (findPreference(KEY_SYSTEM_UPDATE_SETTINGS) != null)
-                removePreferenceIfPackageNotInstalled(findPreference(KEY_SYSTEM_UPDATE_SETTINGS));
         } else {
             // Remove for secondary users
             removePreference(KEY_SYSTEM_UPDATE_SETTINGS);
@@ -220,6 +218,19 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
                     Log.e(LOG_TAG, "Unable to start activity " + intent.toString());
                 }
             }
+        } else if (preference.getKey().equals(KEY_MOD_VERSION)) {
+            System.arraycopy(mTaps, 1, mTaps, 0, mTaps.length-1);
+            mTaps[mTaps.length-1] = SystemClock.uptimeMillis();
+            if (mTaps[0] >= (SystemClock.uptimeMillis()-500)) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.setClassName("android",
+                        com.android.internal.app.LDroidLogoActivity.class.getName());
+                try {
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Log.e(LOG_TAG, "Unable to start activity " + intent.toString());
+                }
+            }
         } else if (preference.getKey().equals(KEY_BUILD_NUMBER)) {
             // Don't enable developer options for secondary users.
             if (UserHandle.myUserId() != UserHandle.USER_OWNER) return true;
@@ -235,13 +246,10 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
                     getActivity().getSharedPreferences(DevelopmentSettings.PREF_FILE,
                             Context.MODE_PRIVATE).edit().putBoolean(
                                     DevelopmentSettings.PREF_SHOW, true).apply();
-                    Settings.Secure.putInt(getActivity().getContentResolver(),
-                            Settings.Secure.DEVELOPER_OPTIONS_ENABLED, 1);
-
                     if (mDevHitToast != null) {
                         mDevHitToast.cancel();
                     }
-                    mDevHitToast = Toast.makeText(getActivity(), R.string.show_dev_on_cm,
+                    mDevHitToast = Toast.makeText(getActivity(), R.string.show_dev_on,
                             Toast.LENGTH_LONG);
                     mDevHitToast.show();
                 } else if (mDevHitCountdown > 0
@@ -250,7 +258,7 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
                         mDevHitToast.cancel();
                     }
                     mDevHitToast = Toast.makeText(getActivity(), getResources().getQuantityString(
-                            R.plurals.show_dev_countdown_cm, mDevHitCountdown, mDevHitCountdown),
+                            R.plurals.show_dev_countdown, mDevHitCountdown, mDevHitCountdown),
                             Toast.LENGTH_SHORT);
                     mDevHitToast.show();
                 }
@@ -258,23 +266,9 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
                 if (mDevHitToast != null) {
                     mDevHitToast.cancel();
                 }
-                mDevHitToast = Toast.makeText(getActivity(), R.string.show_dev_already_cm,
+                mDevHitToast = Toast.makeText(getActivity(), R.string.show_dev_already,
                         Toast.LENGTH_LONG);
                 mDevHitToast.show();
-            }
-        } else if (preference.getKey().equals(KEY_MOD_VERSION)) {
-            System.arraycopy(mHits, 1, mHits, 0, mHits.length-1);
-            mHits[mHits.length-1] = SystemClock.uptimeMillis();
-            if (mHits[0] >= (SystemClock.uptimeMillis()-500)) {
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.putExtra("is_cm", true);
-                intent.setClassName("android",
-                        com.android.internal.app.PlatLogoActivity.class.getName());
-                try {
-                    startActivity(intent);
-                } catch (Exception e) {
-                    Log.e(LOG_TAG, "Unable to start activity " + intent.toString());
-                }
             }
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -436,29 +430,5 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
         } catch (IOException e) {}
 
         return result;
-    }
-
-    private boolean removePreferenceIfPackageNotInstalled(Preference preference) {
-        String intentUri=((PreferenceScreen) preference).getIntent().toUri(1);
-        Pattern pattern = Pattern.compile("component=([^/]+)/");
-        Matcher matcher = pattern.matcher(intentUri);
-
-        String packageName=matcher.find()?matcher.group(1):null;
-        if(packageName != null) {
-            try {
-                PackageInfo pi = getPackageManager().getPackageInfo(packageName,
-                        PackageManager.GET_ACTIVITIES);
-                if (!pi.applicationInfo.enabled) {
-                    Log.e(LOG_TAG,"package "+packageName+" is disabled, hiding preference.");
-                    getPreferenceScreen().removePreference(preference);
-                    return true;
-                }
-            } catch (NameNotFoundException e) {
-                Log.e(LOG_TAG,"package "+packageName+" not installed, hiding preference.");
-                getPreferenceScreen().removePreference(preference);
-                return true;
-            }
-        }
-        return false;
     }
 }

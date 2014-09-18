@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2008 The Android Open Source Project
- * Portions Copyright (C) 2013 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -159,10 +158,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
 
     private static final String SHOW_ALL_ANRS_KEY = "show_all_anrs";
 
-    private static final String KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
-
-    private static final String KILL_APP_LONGPRESS_TIMEOUT = "kill_app_longpress_timeout";
-
     private static final String TAG_CONFIRM_ENFORCE = "confirm_enforce";
 
     private static final String PACKAGE_MIME_TYPE = "application/vnd.android.package-archive";
@@ -172,6 +167,8 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
     private static final String DEVELOPMENT_TOOLS = "development_tools";
 
     private static final String ADVANCED_REBOOT_KEY = "advanced_reboot";
+
+    private static final String MEDIA_SCANNER_ON_BOOT = "media_scanner_on_boot";
 
     private static final String DEVELOPMENT_SHORTCUT_KEY = "development_shortcut";
 
@@ -231,14 +228,13 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
     private ListPreference mAppProcessLimit;
 
     private CheckBoxPreference mShowAllANRs;
-    private CheckBoxPreference mKillAppLongpressBack;
-    private ListPreference mKillAppLongpressTimeout;
 
     private ListPreference mRootAccess;
     private Object mSelectedRootValue;
     private PreferenceScreen mDevelopmentTools;
 
     private CheckBoxPreference mAdvancedReboot;
+    private ListPreference mMSOB;
 
     private CheckBoxPreference mUpdateRecovery;
 
@@ -285,8 +281,7 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
                 findPreference(DEBUG_DEBUGGING_CATEGORY_KEY);
 
         mEnableAdb = findAndInitCheckboxPref(ENABLE_ADB);
-        mAdbNotify = (CheckBoxPreference) findPreference(ADB_NOTIFY);
-        mAllPrefs.add(mAdbNotify);
+        mAdbNotify = findAndInitCheckboxPref(ADB_NOTIFY);
         mClearAdbKeys = findPreference(CLEAR_ADB_KEYS);
         if (!SystemProperties.getBoolean("ro.adb.secure", false)) {
             if (debugDebuggingCategory != null) {
@@ -294,7 +289,7 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
             }
         }
         mEnableTerminal = findAndInitCheckboxPref(ENABLE_TERMINAL);
-        if (!Utils.isPackageInstalled(getActivity(), TERMINAL_APP_PACKAGE)) {
+        if (!isPackageInstalled(getActivity(), TERMINAL_APP_PACKAGE)) {
             debugDebuggingCategory.removePreference(mEnableTerminal);
             mEnableTerminal = null;
         }
@@ -324,15 +319,14 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
             disableForUser(mQuickBoot);
         }
 
-        if (!Utils.isPackageInstalled(getActivity(), QUICKBOOT_PACKAGE_NAME)) {
+        if (!isPackageInstalled(QUICKBOOT_PACKAGE_NAME)) {
             removePreference(mQuickBoot);
         }
 
         mDebugAppPref = findPreference(DEBUG_APP_KEY);
         mAllPrefs.add(mDebugAppPref);
         mWaitForDebugger = findAndInitCheckboxPref(WAIT_FOR_DEBUGGER_KEY);
-        mVerifyAppsOverUsb = (CheckBoxPreference) findPreference(VERIFY_APPS_OVER_USB_KEY);
-        mAllPrefs.add(mVerifyAppsOverUsb);
+        mVerifyAppsOverUsb = findAndInitCheckboxPref(VERIFY_APPS_OVER_USB_KEY);
         if (!showVerifierSetting()) {
             if (debugDebuggingCategory != null) {
                 debugDebuggingCategory.removePreference(mVerifyAppsOverUsb);
@@ -374,14 +368,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
         mAllPrefs.add(mShowAllANRs);
         mResetCbPrefs.add(mShowAllANRs);
 
-        mKillAppLongpressBack = findAndInitCheckboxPref(KILL_APP_LONGPRESS_BACK);
-
-        // Back long press timeout
-        mKillAppLongpressTimeout = addListPreference(KILL_APP_LONGPRESS_TIMEOUT);
-        int killAppLongpressTimeout = Settings.Secure.getInt(getActivity().getContentResolver(),
-                Settings.Secure.KILL_APP_LONGPRESS_TIMEOUT, 0);
-        mKillAppLongpressTimeout.setOnPreferenceChangeListener(this);
-
         Preference selectRuntime = findPreference(SELECT_RUNTIME_KEY);
         if (selectRuntime != null) {
             mAllPrefs.add(selectRuntime);
@@ -402,6 +388,10 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
 
         mDevelopmentTools = (PreferenceScreen) findPreference(DEVELOPMENT_TOOLS);
         mAllPrefs.add(mDevelopmentTools);
+
+        mMSOB = (ListPreference) findPreference(MEDIA_SCANNER_ON_BOOT);
+        mAllPrefs.add(mMSOB);
+        mMSOB.setOnPreferenceChangeListener(this);
     }
 
     private ListPreference addListPreference(String prefKey) {
@@ -547,9 +537,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
             mEnabledSwitch.setChecked(mLastEnabledState);
             setPrefsEnabledState(mLastEnabledState);
         }
-
-        updateKillAppLongpressBackOptions();
-        updateKillAppLongpressTimeoutOptions();
     }
 
     void updateCheckBox(CheckBoxPreference checkBox, boolean value) {
@@ -614,11 +601,12 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
         updateAdvancedRebootOptions();
         updateDevelopmentShortcutOptions();
         updateUpdateRecoveryOptions();
+        updateMSOBOptions();
     }
 
     private void resetAdvancedRebootOptions() {
         Settings.Secure.putInt(getActivity().getContentResolver(),
-                Settings.Secure.ADVANCED_REBOOT, 0);
+                Settings.Secure.ADVANCED_REBOOT, 1);
     }
 
     private void writeAdvancedRebootOptions() {
@@ -629,7 +617,7 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
 
     private void updateAdvancedRebootOptions() {
         mAdvancedReboot.setChecked(Settings.Secure.getInt(getActivity().getContentResolver(),
-                Settings.Secure.ADVANCED_REBOOT, 1) != 0);
+                Settings.Secure.ADVANCED_REBOOT, 1) == 1);
     }
 
     private void resetDevelopmentShortcutOptions() {
@@ -646,6 +634,25 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
     private void updateDevelopmentShortcutOptions() {
         mDevelopmentShortcut.setChecked(Settings.Secure.getInt(getActivity().getContentResolver(),
                 Settings.Secure.DEVELOPMENT_SHORTCUT, 0) != 0);
+    }
+
+    private void resetMSOBOptions() {
+        Settings.System.putInt(getActivity().getContentResolver(),
+                Settings.System.MEDIA_SCANNER_ON_BOOT, 0);
+    }
+
+    private void writeMSOBOptions(Object newValue) {
+        Settings.System.putInt(getActivity().getContentResolver(),
+                Settings.System.MEDIA_SCANNER_ON_BOOT,
+                Integer.valueOf((String) newValue));
+        updateMSOBOptions();
+    }
+
+    private void updateMSOBOptions() {
+        int value = Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.MEDIA_SCANNER_ON_BOOT, 0);
+        mMSOB.setValue(String.valueOf(value));
+        mMSOB.setSummary(mMSOB.getEntry());
     }
 
     private void updateAdbOverNetwork() {
@@ -687,8 +694,8 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
         }
         resetDebuggerOptions();
         resetRootAccessOptions();
-        resetAdbNotifyOptions();
-        resetVerifyAppsOverUsbOptions();
+        resetAdvancedRebootOptions();
+        resetMSOBOptions();
         resetDevelopmentShortcutOptions();
         writeAnimationScaleOption(0, mWindowAnimationScale, null);
         writeAnimationScaleOption(1, mTransitionAnimationScale, null);
@@ -787,11 +794,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
         updateRootAccessOptions();
     }
 
-    private void resetAdbNotifyOptions() {
-        Settings.Secure.putInt(getActivity().getContentResolver(),
-                Settings.Secure.ADB_NOTIFY, 1);
-    }
-
     private void updateHdcpValues() {
         ListPreference hdcpChecking = (ListPreference) findPreference(HDCP_CHECKING_KEY);
         if (hdcpChecking != null) {
@@ -809,17 +811,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
             hdcpChecking.setSummary(summaries[index]);
             hdcpChecking.setOnPreferenceChangeListener(this);
         }
-    }
-
-    private void writeKillAppLongpressBackOptions() {
-        Settings.Secure.putInt(getActivity().getContentResolver(),
-                Settings.Secure.KILL_APP_LONGPRESS_BACK,
-                mKillAppLongpressBack.isChecked() ? 1 : 0);
-    }
-
-    private void updateKillAppLongpressBackOptions() {
-        mKillAppLongpressBack.setChecked(Settings.Secure.getInt(
-            getActivity().getContentResolver(), Settings.Secure.KILL_APP_LONGPRESS_BACK, 0) != 0);
     }
 
     private void updatePasswordSummary() {
@@ -880,11 +871,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
             mDebugAppPref.setSummary(getResources().getString(R.string.debug_app_not_set));
             mWaitForDebugger.setEnabled(false);
         }
-    }
-
-    private void resetVerifyAppsOverUsbOptions() {
-        Settings.Global.putInt(getActivity().getContentResolver(),
-              Settings.Global.PACKAGE_VERIFIER_INCLUDE_ADB, 1);
     }
 
     private void updateVerifyAppsOverUsbOptions() {
@@ -1250,7 +1236,7 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
     private void writeAnimationScaleOption(int which, AnimationScalePreference pref,
             Object newValue) {
         try {
-            float scale = newValue != null ? Float.parseFloat(newValue.toString()) : 1;
+            float scale = newValue != null ? Float.parseFloat(newValue.toString()) : 0.75f;
             mWindowManager.setAnimationScale(which, scale);
             updateAnimationScaleValue(which, pref);
         } catch (RemoteException e) {
@@ -1336,33 +1322,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
         }
     }
 
-    private void writeKillAppLongpressTimeoutOptions(Object newValue) {
-        int index = mKillAppLongpressTimeout.findIndexOfValue((String) newValue);
-        int value = Integer.valueOf((String) newValue);
-        Settings.Secure.putInt(getActivity().getContentResolver(),
-                Settings.Secure.KILL_APP_LONGPRESS_TIMEOUT, value);
-        mKillAppLongpressTimeout.setSummary(mKillAppLongpressTimeout.getEntries()[index]);
-    }
-
-    private void updateKillAppLongpressTimeoutOptions() {
-        String value = Settings.Secure.getString(getActivity().getContentResolver(),
-                Settings.Secure.KILL_APP_LONGPRESS_TIMEOUT);
-        if (value == null) {
-            value = "";
-        }
-
-        CharSequence[] values = mKillAppLongpressTimeout.getEntryValues();
-        for (int i = 0; i < values.length; i++) {
-            if (value.contentEquals(values[i])) {
-                mKillAppLongpressTimeout.setValueIndex(i);
-                mKillAppLongpressTimeout.setSummary(mKillAppLongpressTimeout.getEntries()[i]);
-                return;
-            }
-        }
-        mKillAppLongpressTimeout.setValueIndex(0);
-        mKillAppLongpressTimeout.setSummary(mKillAppLongpressTimeout.getEntries()[0]);
-    }
-
     private void writeShowAllANRsOptions() {
         Settings.Secure.putInt(getActivity().getContentResolver(),
                 Settings.Secure.ANR_SHOW_BACKGROUND,
@@ -1407,11 +1366,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
                             Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0);
                     mLastEnabledState = isChecked;
                     setPrefsEnabledState(mLastEnabledState);
-
-                    // Hide development settings from the Settings menu (Android 4.2 behaviour)
-                    getActivity().getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE).edit()
-                        .putBoolean(PREF_SHOW, false)
-                        .apply();
                 }
             }
         }
@@ -1564,8 +1518,6 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
             writeAdvancedRebootOptions();
         } else if (preference == mDevelopmentShortcut) {
             writeDevelopmentShortcutOptions();
-        } else if (preference == mKillAppLongpressBack) {
-            writeKillAppLongpressBackOptions();
         } else if (preference == mUpdateRecovery) {
             writeUpdateRecoveryOptions();
         } else {
@@ -1647,8 +1599,8 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
         } else if (preference == mAppProcessLimit) {
             writeAppProcessLimitOptions(newValue);
             return true;
-        } else if (preference == mKillAppLongpressTimeout) {
-            writeKillAppLongpressTimeoutOptions(newValue);
+        } else if (preference == mMSOB) {
+            writeMSOBOptions(newValue);
             return true;
         } else if (preference == mRootAccess) {
             if ("0".equals(SystemProperties.get(ROOT_ACCESS_PROPERTY, "1"))
@@ -1728,14 +1680,8 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
                         Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 1);
                 mLastEnabledState = true;
                 setPrefsEnabledState(mLastEnabledState);
-
-                // Make sure the development settings is visible in the main Settings menu
-                // This is needed since we may have just turned off dev settings and want to
-                // turn it on again
-                getActivity().getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE).edit()
-                    .putBoolean(PREF_SHOW, true)
-                    .apply();
             }
+
         } else if (dialog == mRootDialog) {
             if (which == DialogInterface.BUTTON_POSITIVE) {
                 writeRootAccessOptions(mSelectedRootValue);
@@ -1803,6 +1749,14 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
                 }
             }
             return null;
+        }
+    }
+
+    private static boolean isPackageInstalled(Context context, String packageName) {
+        try {
+            return context.getPackageManager().getPackageInfo(packageName, 0) != null;
+        } catch (NameNotFoundException e) {
+            return false;
         }
     }
 }

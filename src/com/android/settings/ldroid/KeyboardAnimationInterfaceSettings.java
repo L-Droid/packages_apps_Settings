@@ -40,7 +40,7 @@ import android.util.Log;
 import android.text.TextUtils;
 
 import com.android.settings.ldroid.SeekBarPreferenceCHOS;
-import com.android.internal.util.temasek.AwesomeAnimationHelper;
+import com.android.internal.util.crdroid.AwesomeAnimationHelper;
 
 public class KeyboardAnimationInterfaceSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {

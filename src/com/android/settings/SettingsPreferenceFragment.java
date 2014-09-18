@@ -23,13 +23,17 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.DataSetObserver;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceFragment;
 import android.preference.PreferenceGroup;
+import android.preference.PreferenceScreen;
+import android.preference.PreferenceFragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
@@ -40,8 +44,8 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.android.settings.search.SearchHighlightAdapterWrapper;
-import com.android.settings.search.SearchPopulator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Base class for Settings fragments, with some helper functions and dialog management.
@@ -56,33 +60,24 @@ public class SettingsPreferenceFragment extends PreferenceFragment implements Di
 
     private String mHelpUrl;
 
-    // Need to use AOKP Custom system animation
-    protected ContentResolver mContentRes; 
-
-    //Needed for Lockscreen Notifications
+    // Needed for Lockscreen Notifications
     protected Context mContext;
+ 
+    // Needed for Custom System Animations
+    protected ContentResolver mContentRes;  
 
     // Cache the content resolver for async callbacks
     private ContentResolver mContentResolver;
-
-    private String mHighlightedPreferenceKey;
-    private SearchHighlightAdapterWrapper mSearchHighlightAdapter;
-    private boolean mPrefsObserverRegistered;
-    private DataSetObserver mPrefsObserver = new DataSetObserver() {
-        @Override
-        public void onChanged() {
-            updateHighlightPositionIfNeeded();
-        }
-    };
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        mContext = getActivity().getApplicationContext();
-
-	// Need to use AOKP Custom system animation
-        mContentRes = getActivity().getContentResolver(); 
+         // Needed to use lockscreen notifications
+ 	    mContext = getActivity().getApplicationContext();
+ 
+	    // Needed to use custom system animations
+	    mContentRes = getActivity().getContentResolver();
 
         // Prepare help url and enable menu if necessary
         int helpResource = getHelpResource();
@@ -92,91 +87,11 @@ public class SettingsPreferenceFragment extends PreferenceFragment implements Di
     }
 
     @Override
-    protected void bindPreferences() {
-        super.bindPreferences();
-
-        ListAdapter adapter = getPreferenceScreen().getRootAdapter();
-        if (mPrefsObserverRegistered) {
-            adapter.unregisterDataSetObserver(mPrefsObserver);
-            mPrefsObserverRegistered = false;
-        }
-
-        if (mHighlightedPreferenceKey != null) {
-            int highlightColor = getResources().getColor(R.color.search_pref_highlight_background);
-
-            adapter.registerDataSetObserver(mPrefsObserver);
-            mPrefsObserverRegistered = true;
-
-            mSearchHighlightAdapter = new SearchHighlightAdapterWrapper(adapter,
-                    300, 650, highlightColor);
-            getListView().setAdapter(mSearchHighlightAdapter);
-            updateHighlightPositionIfNeeded();
-       } else {
-            mSearchHighlightAdapter = null;
-        }
-    }
-
-    private void updateHighlightPositionIfNeeded() {
-        Preference pref = mHighlightedPreferenceKey != null
-                ? findPreference(mHighlightedPreferenceKey) : null;
-        if (pref == null) {
-            return;
-        }
-
-        int position = countPreferencesInGroup(getPreferenceScreen(), pref).first;
-        getListView().smoothScrollToPosition(position);
-        mSearchHighlightAdapter.setHighlightedPosition(position);
-    }
-
-    private Pair<Integer, Boolean> countPreferencesInGroup(PreferenceGroup group,
-            Preference stopAt) {
-        int result = 0, count = group.getPreferenceCount();
-        for (int i = 0; i < count; i++) {
-            Preference p = group.getPreference(i);
-
-            // if this is our target, stop right away
-            if (p == stopAt) {
-                return Pair.create(result, true);
-            }
-
-            // count the preference itself (or, in the case of a PreferenceCategory, its header)
-            result++;
-
-            if (p instanceof PreferenceGroup) {
-                // count preferences in this group
-                PreferenceGroup pg = (PreferenceGroup) p;
-                Pair<Integer, Boolean> prefsInGroup = countPreferencesInGroup(pg, stopAt);
-                result += prefsInGroup.first;
-                if (prefsInGroup.second) {
-                    return Pair.create(result, true);
-                }
-            }
-        }
-        return Pair.create(result, false);
-    }
-
-    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        Bundle args = getArguments();
-        if (args != null && args.containsKey(SearchPopulator.EXTRA_PREF_KEY)) {
-            mHighlightedPreferenceKey = args.getString(SearchPopulator.EXTRA_PREF_KEY);
-        }
-        if (mHighlightedPreferenceKey == null) {
-            Intent intent = getActivity().getIntent();
-            mHighlightedPreferenceKey = intent.getStringExtra(SearchPopulator.EXTRA_PREF_KEY);
-        }
-
         super.onActivityCreated(savedInstanceState);
         if (!TextUtils.isEmpty(mHelpUrl)) {
             setHasOptionsMenu(true);
         }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        // we only want to highlight once
-        mHighlightedPreferenceKey = null;
     }
 
     protected void removePreference(String key) {
@@ -426,8 +341,23 @@ public class SettingsPreferenceFragment extends PreferenceFragment implements Di
         }
     }
 
-    // Need to AOKP Custom system animation
+    public boolean isPackageInstalled(String packageName) {
+        if (packageName != null) {
+            try {
+                PackageInfo pi = getPackageManager().getPackageInfo(packageName, 0);
+                if (!pi.applicationInfo.enabled) {
+                    return false;
+                }
+            } catch (NameNotFoundException e) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    // Need to Custom system animation
     public void setTitle(int resId) {
         getActivity().setTitle(resId);
-    }  
+    }	
 }

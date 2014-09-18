@@ -37,6 +37,13 @@
         android:title="@string/advanced_reboot_title"
         android:summary="@string/advanced_reboot_summary" />
 
+    <ListPreference
+        android:key="media_scanner_on_boot"
+        android:title="@string/media_scanner_on_boot_title"
+        android:persistent="false"
+        android:entries="@array/media_scanner_on_boot_entries"
+        android:entryValues="@array/media_scanner_on_boot_values" />
+
     <PreferenceScreen
             android:key="local_backup_password"
             android:title="@string/local_backup_password_title"
@@ -51,7 +58,7 @@
     <CheckBoxPreference
         android:key="keep_screen_on"
         android:title="@string/keep_screen_on"
-        android:summary="@string/keep_screen_on_summary_cm"/>
+        android:summary="@string/keep_screen_on_summary"/>
 
     <ListPreference
         android:key="hdcp_checking"
@@ -93,8 +100,8 @@
 
         <CheckBoxPreference
             android:key="enable_adb"
-            android:title="@string/enable_adb_cm"
-            android:summary="@string/enable_adb_summary_cm"/>
+            android:title="@string/enable_adb"
+            android:summary="@string/enable_adb_summary"/>
 
         <CheckBoxPreference
             android:key="adb_notify"
@@ -177,12 +184,6 @@
             android:key="pointer_location"
             android:title="@string/pointer_location"
             android:summary="@string/pointer_location_summary"/>
-
-        <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
-            android:key="edge_service_for_gestures"
-            android:title="@string/edge_gesture_service_title"
-            android:summary="@string/edge_gesture_service_summary"
-            android:defaultValue="1"/>
 
     </PreferenceCategory>
 
@@ -331,19 +332,6 @@
             android:title="@string/show_all_anrs"
             android:summary="@string/show_all_anrs_summary"/>
 
-        <CheckBoxPreference
-            android:key="kill_app_longpress_back"
-            android:title="@string/kill_app_longpress_back"
-            android:summary="@string/kill_app_longpress_back_summary"/>
-
-        <ListPreference
-            android:key="kill_app_longpress_timeout"
-            android:defaultValue="2000"
-            android:title="@string/kill_app_longpress_timeout_title"
-            android:entries="@array/kill_app_longpress_timeout_entries"
-            android:entryValues="@array/kill_app_longpress_timeout_values"
-            android:dependency="kill_app_longpress_back" />
-
-    </PreferenceCategory>
+     </PreferenceCategory>
 
 </PreferenceScreen>

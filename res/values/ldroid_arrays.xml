@@ -1162,7 +1162,7 @@
     <!-- Lockscreen lock icon values -->
     <string-array name="lock_icon_entries" translatable="false">
         <item>@string/lockscreen_lock_icon_custom</item>
-        <item>@string/lockscreen_lock_icon_carbon</item>
+        <item>@string/lockscreen_lock_icon_ldroid</item>
         <item>@string/lockscreen_lock_icon_default</item>
     </string-array>
 
@@ -1233,4 +1233,58 @@
         <item>8000</item>
         <item>10000</item>
     </string-array>
+
+    <!-- Lockscreen lock icon values -->
+    <string-array name="lockscreen_rotation_entries">
+        <item>@string/disabled</item>
+        <item>@string/enabled</item>
+        <item>@string/lockscreen_rotation_portrait</item>
+        <item>@string/lockscreen_rotation_landscape</item>
+    </string-array>
+
+    <string-array name="lockscreen_rotation_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <!-- Shake sensitivity -->
+    <string-array name="shake_sensitivity_entries">
+        <item>@string/shake_sensitivity_ultra_sensitive</item>
+        <item>@string/shake_sensitivity_super_sensitive</item>
+        <item>@string/shake_sensitivity_very_sensitive</item>
+        <item>@string/shake_sensitivity_more_sensitive</item>
+        <item>@string/default_string</item>
+        <item>@string/shake_sensitivity_less_sensitive</item>
+        <item>@string/shake_sensitivity_even_less_sensitive</item>
+    </string-array>
+
+    <string-array name="shake_sensitivity_values" translatable="false">
+        <item>-4</item>
+        <item>-3</item>
+        <item>-2</item>
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!-- Shake to secure timeout -->
+    <string-array name="shake_secure_timeout_entries">
+        <item>@string/shake_secure_timeout_disabled</item>
+        <item>@string/shake_secure_timeout_1min</item>
+        <item>@string/shake_secure_timeout_5min</item>
+        <item>@string/shake_secure_timeout_10min</item>
+        <item>@string/shake_secure_timeout_30min</item>
+    </string-array>
+
+    <string-array name="shake_secure_timeout_values" translatable="false">
+        <item>0</item>
+        <item>60000</item>
+        <item>300000</item>
+        <item>600000</item>
+        <item>1800000</item>
+    </string-array>
+
 </resources>

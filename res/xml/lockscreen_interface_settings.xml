@@ -16,22 +16,15 @@
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
-    android:title="@string/themes_settings_title" >
+    android:title="@string/lockscreen_settings_title" >
 
     <PreferenceCategory
         android:title="@string/title_general"
         android:key="lockscreen_general_category" >
 
-        <PreferenceScreen
-            android:key="screen_security"
-            android:fragment="com.android.settings.LockscreenSecuritySettings"
-            android:title="@string/screen_security_category"
-            android:summary="@string/screen_security_summary">
-        </PreferenceScreen>
-
     <PreferenceScreen
             android:key="keyguard_style"
-            android:fragment="com.android.settings.ldroid.ls.LockscreenStyle"
+            android:fragment="com.android.settings.ldroid.lockscreen.LockscreenStyle"
             android:title="@string/lockscreen_style_title"/>
 
         <ListPreference
@@ -52,6 +45,11 @@
             android:title="@string/lockscreen_eight_targets_title"
             android:summary="@string/lockscreen_eight_targets_summary" />
 
+        <PreferenceScreen
+            android:fragment="com.android.settings.ldroid.lockscreen.LockscreenTargets"
+            android:key="ls_targets_category"
+            android:title="@string/ls_targets_category" />
+
     <PreferenceScreen
             android:key="lockscreen_shortcuts"
             android:fragment="com.android.settings.ldroid.dslv.ButtonsListViewSettings"
@@ -61,40 +59,19 @@
         <extra android:name="maxAllowedButtons" android:value="5" />
         <extra android:name="disableLongpress" android:value="true" />
         <extra android:name="useAppPickerOnly" android:value="true" />
-        <extra android:name="fragment" android:value="com.android.settings.ldroid.ls.LockscreenShortcutFragment" />
+        <extra android:name="fragment" android:value="com.android.settings.ldroid.lockscreen.LockscreenShortcutFragment" />
     </PreferenceScreen>
 
-        <CheckBoxPreference
-            android:key="lock_before_unlock"
-            android:title="@string/lock_before_unlock_title"
-            android:summary="@string/lock_before_unlock_summary" />
-
         <PreferenceScreen
-            settings:excludeFromSearch="true"
-            android:fragment="com.android.settings.cyanogenmod.LockscreenButtons"
+            android:fragment="com.android.settings.ldroid.lockscreen.LockscreenButtons"
             android:key="lockscreen_buttons"
             android:title="@string/lockscreen_buttons_title"
             android:summary="@string/lockscreen_buttons_summary" />
 
-        <CheckBoxPreference
-            android:key="lockscreen_modlock_enabled"
-            android:title="@string/lockscreen_enable_modlock_title" />
-
-        <CheckBoxPreference
-            android:key="see_through"
-            android:title="@string/see_through_title"
-            android:summary="@string/see_through_summary" />
-
-        <com.android.settings.crdroid.SeekBarPreferenceCHOS
-            android:key="blur_radius"
-            android:title="@string/blur_radius_title"
-            android:summary="@string/blur_radius_summary"
-            android:max="25"
-            settings:minimun="0"
-            settings:unitsLeft=""
-            settings:unitsRight=""
-            android:persistent="false"
-            android:dependency="see_through" />
+    <CheckBoxPreference
+            android:key="notification_peek"
+            android:title="@string/notification_peek_title"
+            android:summary="@string/notification_peek_summary" />
 
     <CheckBoxPreference
             android:key="lockscreen_torch"
@@ -107,39 +84,19 @@
         android:title="@string/lockscreen_widgets_category_title"
         android:key="lockscreen_widgets_category" >
 
-        <CheckBoxPreference
-            android:key="keyguard_enable_widgets"
-            android:title="@string/lockscreen_custom_widgets_title" />
+    <PreferenceScreen
+        android:key="lock_clock"
+        android:title="@string/lock_clock_title"
+        android:summary="@string/lock_clock_summary">
+        <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="com.cyanogenmod.lockclock"
+                android:targetClass="com.cyanogenmod.lockclock.preference.Preferences" />
+    </PreferenceScreen>
 
-        <CheckBoxPreference
-            android:key="lockscreen_all_widgets"
-            android:dependency="keyguard_enable_widgets"
-            android:title="@string/lockscreen_allow_all_title"
-            android:summary="@string/lockscreen_allow_all_summary" />
-
-        <CheckBoxPreference
-                android:key="keyguard_enable_camera"
-                android:title="@string/lockscreen_enable_camera_title" />
-
-        <!-- Lock clock -->
         <PreferenceScreen
-            android:key="lock_clock"
-            android:title="@string/lock_clock_title"
-            android:summary="@string/lock_clock_summary">
-            <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="com.cyanogenmod.lockclock"
-                    android:targetClass="com.cyanogenmod.lockclock.preference.Preferences" />
-        </PreferenceScreen>
-
-        <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
-            android:key="lockscreen_maximize_widgets"
-            android:summary="@string/lockscreen_maximize_widgets_summary"
-            android:title="@string/lockscreen_maximize_widgets_title" />
-
-        <CheckBoxPreference
-            android:key="lockscreen_disable_frame"
-            android:title="@string/lockscreen_widget_frame_title"
-            android:summary="@string/lockscreen_widget_frame_summary" />
+            android:fragment="com.android.settings.ldroid.lockscreen.LockscreenWidgets"
+            android:key="ls_widgets_category"
+            android:title="@string/ls_widgets_category" />
 
     </PreferenceCategory>
 

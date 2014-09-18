@@ -13,11 +13,13 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.ldroid.AnimBarPreference;
 import com.android.settings.R;
 
-import com.android.internal.util.temasek.AwesomeAnimationHelper;
+import com.android.internal.util.crdroid.AwesomeAnimationHelper;
 
 import java.util.Arrays;
 
 public class AnimationControls extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
+
+    private static final String TAG = "AnimationControls";
 
     private static final String ACTIVITY_OPEN = "activity_open";
     private static final String ACTIVITY_CLOSE = "activity_close";
@@ -147,6 +149,7 @@ public class AnimationControls extends SettingsPreferenceFragment implements OnP
         }
         return false;
     }
+
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         boolean result = false;

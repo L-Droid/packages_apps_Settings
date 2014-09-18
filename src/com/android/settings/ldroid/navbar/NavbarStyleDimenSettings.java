@@ -38,8 +38,8 @@ import android.view.MenuItem;
 
 import com.android.internal.util.slim.DeviceUtils;
 
-import com.carbon.fibers.preference.SettingsPreferenceFragment;
-import com.carbon.fibers.R;
+import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.R;
 
 public class NavbarStyleDimenSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {

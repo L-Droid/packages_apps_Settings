@@ -36,8 +36,8 @@ import android.provider.Settings;
 import com.android.internal.util.slim.DeviceUtils;
 import com.android.internal.util.slim.SlimActions;
 
-import com.carbon.fibers.preference.SettingsPreferenceFragment;
-import com.carbon.fibers.R;
+import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.R;
 
 public class NavbarSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {

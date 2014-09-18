@@ -28,7 +28,7 @@
          <extra android:name="maxAllowedButtons" android:value="16" />
          <extra android:name="disableLongpress" android:value="true" />
          <extra android:name="useAppPickerOnly" android:value="true" />
-         <extra android:name="fragment" android:value="com.android.settings.ldroid.sb.NotificationsShortcutFragment" />
+         <extra android:name="fragment" android:value="com.android.settings.ldroid.NotificationsShortcutFragment" />
      </PreferenceScreen>
 
     <ListPreference
@@ -39,34 +39,15 @@
         android:entryValues="@array/notification_drawer_collapse_on_dismiss_values" />
 
     <PreferenceScreen
-        settings:includeXmlForSearch="@xml/quick_settings_panel"
         android:key="quick_settings_panel"
-        android:fragment="com.android.settings.quicksettings.QuickSettings"
+        android:fragment="com.android.settings.ldroid.quicksettings.QuickSettings"
         android:title="@string/quick_settings_panel_title" />
 
     <Preference
-        android:fragment="com.android.settings.crdroid.NotificationDrawerStyle"
+        android:fragment="com.android.settings.ldroid.NotificationDrawerStyle"
         android:key="notification_style"
         android:title="@string/notification_style_title"
         android:summary="@string/notification_style_summary" />
-
-    <Preference
-        android:fragment="com.android.settings.crdroid.NotificationsReminder"
-        android:key="notifications_reminder"
-        android:title="@string/noti_reminder_title"
-        android:summary="@string/noti_reminder_summary" />
-
-    <ListPreference
-        android:key="smart_pulldown"
-        android:title="@string/smart_pulldown_title"
-        android:entries="@array/smart_pulldown_entries"
-        android:entryValues="@array/smart_pulldown_values"
-        android:persistent="false" />
-
-    <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
-        android:key="notification_brightness_slider"
-        android:title="@string/notification_drawer_brightness_slider_title"
-        android:defaultValue="false" />
 
     <ListPreference
         android:key="notification_hide_labels"
@@ -75,7 +56,7 @@
         android:entryValues="@array/notification_hide_labels_values"
         android:persistent="false" />
 
-     <com.android.settings.ldroid.sb.CustomCarrier
+     <com.android.settings.ldroid.CustomCarrier
          android:key="notification_custom_carrier_label"
          android:title="@string/notification_custom_carrier_label_title"
          android:dialogTitle="@string/notification_custom_carrier_label_title"
@@ -107,7 +88,7 @@
             android:title="@string/tile_picker_title"
             android:summary="@string/tile_picker_summary"
             android:dependency="qs_quick_access_linked"
-            android:fragment="com.android.settings.quicksettings.QuickSettingsTiles" >
+            android:fragment="com.android.settings.ldroid.quicksettings.QuickSettingsTiles" >
             <extra android:name="config_ribbon" android:value="true" />
         </PreferenceScreen>
     </PreferenceCategory>

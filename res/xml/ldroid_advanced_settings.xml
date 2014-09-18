@@ -33,6 +33,12 @@
         android:title="@string/hfm_pref_screen_title"
         android:fragment="com.android.settings.ldroid.hfm.HfmSettings" />
 
+    <!-- Wakelock blocker -->
+    <PreferenceScreen
+        android:key="battery_saver"
+        android:title="@string/battery_saver_title"
+        android:fragment="com.android.settings.ldroid.batterysaver.BatterySaverSettings" />
+
     <!-- Propmodder -->
     <PreferenceScreen
         android:key="buildprop_modder"
@@ -57,15 +63,10 @@
         android:title="@string/superuser"
         android:fragment="com.koushikdutta.superuser.PolicyNativeFragment" />
 
-    <PreferenceScreen
-        android:id="@+id/system_app_remover"
-        android:title="@string/sizer_title"
-        android:fragment="com.android.settings.ldroid.SystemappRemover" />
-
     <!-- Wakelock blocker -->
     <PreferenceScreen
         android:key="wakelock_blocker"
         android:title="@string/wakelock_blocker"
-        android:fragment="com.android.settings.crdroid.WakeLockBlocker" />
+        android:fragment="com.android.settings.ldroid.WakeLockBlocker" />
 
 </PreferenceScreen>

@@ -681,5 +681,4 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         public void onCancel(DialogInterface dialog) {
         }
     }
-
 }

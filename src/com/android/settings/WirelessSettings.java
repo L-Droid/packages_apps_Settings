@@ -53,8 +53,6 @@ import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.TelephonyProperties;
 import com.android.settings.nfc.NfcEnabler;
 
-import com.android.internal.telephony.PhoneConstants;
-
 import java.util.Collection;
 
 public class WirelessSettings extends RestrictedSettingsFragment
@@ -74,10 +72,8 @@ public class WirelessSettings extends RestrictedSettingsFragment
     private static final String KEY_VOICE_PLUS_ACCOUNT = "voice_plus";
     private static final String KEY_TOGGLE_NSD = "toggle_nsd"; //network service discovery
     private static final String KEY_CELL_BROADCAST_SETTINGS = "cell_broadcast_settings";
-    private static final String KEY_CONNECTION_MANAGER = "connection_manager";
 
     private static final String GOOGLE_VOICE_PACKAGE = "com.google.android.apps.googlevoice";
-    private static final String VOICE_PLUS_PACKAGE = "org.cyanogenmod.voiceplus";
     private static final ComponentName VOICE_PLUS_SETUP =
             new ComponentName("org.cyanogenmod.voiceplus", "org.cyanogenmod.voiceplus.VoicePlusSetup");
 
@@ -362,16 +358,10 @@ public class WirelessSettings extends RestrictedSettingsFragment
             mNfcEnabler = null;
         }
 
-        // Remove Connection Manager on CDMA devices
-        if (mTm.getPhoneType() == PhoneConstants.PHONE_TYPE_CDMA) {
-            removePreference(KEY_CONNECTION_MANAGER);
-        }
-
-        // Remove Mobile Network Settings, Manage Mobile Plan and Connection Manager if it's a wifi-only device.
+        // Remove Mobile Network Settings and Manage Mobile Plan if it's a wifi-only device.
         if (isSecondaryUser || Utils.isWifiOnly(getActivity())) {
             removePreference(KEY_MOBILE_NETWORK_SETTINGS);
             removePreference(KEY_MANAGE_MOBILE_PLAN);
-            removePreference(KEY_CONNECTION_MANAGER);
         }
         // Remove Mobile Network Settings and Manage Mobile Plan
         // if config_show_mobile_plan sets false.
@@ -391,9 +381,8 @@ public class WirelessSettings extends RestrictedSettingsFragment
             removePreference(KEY_SMS_APPLICATION);
         }
 
-        // Remove Voice+ option if Google Voice or Voice Plus is not installed
-        if (!Utils.isPackageInstalled(getActivity(), GOOGLE_VOICE_PACKAGE)
-                || !Utils.isPackageInstalled(getActivity(), VOICE_PLUS_PACKAGE)) {
+        // Remove Voice+ option if Google Voice is not installed
+        if (!isPackageInstalled(GOOGLE_VOICE_PACKAGE)) {
             removePreference(KEY_VOICE_PLUS_ACCOUNT);
         }
 

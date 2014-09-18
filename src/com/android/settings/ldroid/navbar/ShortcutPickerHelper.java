@@ -28,7 +28,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 
-import com.carbon.fibers.R;
+import com.android.settings.R;
 
 import com.android.internal.util.slim.AppHelper;
 

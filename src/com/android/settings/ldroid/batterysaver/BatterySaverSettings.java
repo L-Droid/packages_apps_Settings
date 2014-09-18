@@ -35,11 +35,11 @@ import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.telephony.TelephonyManager;
 import com.android.internal.telephony.Phone;
-import com.android.settings.cyanogenmod.TimeRangePreference;
+import com.android.settings.ldroid.TimeRangePreference;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.ldroid.SeekBarPreference;
+import com.android.settings.ldroid.SeekBarPreferenceCHOS;
 import com.android.settings.ldroid.batterysaver.BatterySaverHelper;
 
 public class BatterySaverSettings extends SettingsPreferenceFragment implements
@@ -81,8 +81,8 @@ public class BatterySaverSettings extends SettingsPreferenceFragment implements
     private ListPreference mNormalCdmaPreferredNetworkMode;
     private ListPreference mPowerSavingCdmaPreferredNetworkMode;
     private SwitchPreference mBatterySaverEnabled;
-    private SeekBarPreference mBatterySaverDelay;
-    private SeekBarPreference mLowBatteryLevel;
+    private SeekBarPreferenceCHOS mBatterySaverDelay;
+    private SeekBarPreferenceCHOS mLowBatteryLevel;
     private CheckBoxPreference mSmartBluetoothEnabled;
     private CheckBoxPreference mSmartLocationEnabled;
     private CheckBoxPreference mSmartBrightnessEnabled;
@@ -91,7 +91,7 @@ public class BatterySaverSettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mSmartVibrateEnabled;
     private CheckBoxPreference mSmartNoSignalEnabled;
     private ListPreference mUserCheckIntervalTime;
-    private SeekBarPreference mInitialBrightness;
+    private SeekBarPreferenceCHOS mInitialBrightness;
     private TimeRangePreference mBatterySaverTimeRange;
     private int mMinimumBacklight;
     private int mMaximumBacklight;
@@ -122,12 +122,12 @@ public class BatterySaverSettings extends SettingsPreferenceFragment implements
                     Settings.Global.getInt(mResolver, Settings.Global.BATTERY_SAVER_END, 0));
         mBatterySaverTimeRange.setOnPreferenceChangeListener(this);
 
-        mBatterySaverDelay = (SeekBarPreference) prefSet.findPreference(PREF_KEY_BATTERY_SAVER_MODE_CHANGE_DELAY);
+        mBatterySaverDelay = (SeekBarPreferenceCHOS) prefSet.findPreference(PREF_KEY_BATTERY_SAVER_MODE_CHANGE_DELAY);
         mBatterySaverDelay.setValue(Settings.Global.getInt(mResolver,
                      Settings.Global.BATTERY_SAVER_MODE_CHANGE_DELAY, 5));
         mBatterySaverDelay.setOnPreferenceChangeListener(this);
 
-        mLowBatteryLevel = (SeekBarPreference) prefSet.findPreference(PREF_KEY_BATTERY_SAVER_MODE_BATTERY_LEVEL);
+        mLowBatteryLevel = (SeekBarPreferenceCHOS) prefSet.findPreference(PREF_KEY_BATTERY_SAVER_MODE_BATTERY_LEVEL);
         int lowBatteryLevels = mContext.getResources().getInteger(
                         com.android.internal.R.integer.config_lowBatteryWarningLevel);
         mLowBatteryLevel.setValue(Settings.Global.getInt(mResolver,
@@ -288,7 +288,7 @@ public class BatterySaverSettings extends SettingsPreferenceFragment implements
         mMinimumBacklight = pm.getMinimumScreenBrightnessSetting();
         mMaximumBacklight = pm.getMaximumScreenBrightnessSetting();
 
-        mInitialBrightness = (SeekBarPreference) prefSet.findPreference(PREF_KEY_BATTERY_SAVER_MODE_BRIGHTNESS_LEVEL);
+        mInitialBrightness = (SeekBarPreferenceCHOS) prefSet.findPreference(PREF_KEY_BATTERY_SAVER_MODE_BRIGHTNESS_LEVEL);
         int brightness = Settings.Global.getInt(mResolver,
                 Settings.Global.BATTERY_SAVER_BRIGHTNESS_LEVEL, mMinimumBacklight);
         int realBrightness = (int)(((float)brightness / (float)mMaximumBacklight) * 100);

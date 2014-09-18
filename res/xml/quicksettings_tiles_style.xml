@@ -29,7 +29,7 @@
              android:title="@string/quick_tiles_text_color_title"
              android:defaultValue="0xffcccccc" />
 
-        <com.android.settings.crdroid.SeekBarPreference
+        <com.android.settings.ldroid.SeekBarPreference
              android:key="quick_tiles_alpha"
              android:title="@string/quick_tiles_alpha_title" />
 

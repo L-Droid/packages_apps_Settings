@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.carbon.fibers.fragments;
+package com.android.settings.ldroid;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -25,8 +25,8 @@ import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 
-import com.carbon.fibers.R;
-import com.carbon.fibers.preference.SettingsPreferenceFragment;
+import com.android.settings.R;
+import com.android.settings.SettingsPreferenceFragment;
 
 public class MoreDeviceSettings extends SettingsPreferenceFragment {
     private static final String TAG = "MoreDeviceSettings";
@@ -42,28 +42,6 @@ public class MoreDeviceSettings extends SettingsPreferenceFragment {
 
         addPreferencesFromResource(R.xml.more_device_settings);
         ContentResolver resolver = getContentResolver();
-
-        final PreferenceGroup sensorsCategory =
-                (PreferenceGroup) findPreference(KEY_SENSORS_MOTORS_CATEGORY);
-
-        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        if (!VibratorIntensity.isSupported() || vibrator == null || !vibrator.hasVibrator()) {
-            getPreferenceScreen().removePreference(sensorsCategory);
-        }
-
-        final PreferenceGroup calibrationCategory =
-                (PreferenceGroup) findPreference(KEY_DISPLAY_CALIBRATION_CATEGORY);
-
-        if (!DisplayColor.isSupported() && !DisplayGamma.isSupported()) {
-            getPreferenceScreen().removePreference(calibrationCategory);
-        } else {
-            if (!DisplayColor.isSupported()) {
-                calibrationCategory.removePreference(findPreference(KEY_DISPLAY_COLOR));
-            }
-            if (!DisplayGamma.isSupported()) {
-                calibrationCategory.removePreference(findPreference(KEY_DISPLAY_GAMMA));
-            }
-        }
     }
 
 }

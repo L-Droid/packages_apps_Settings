@@ -16,12 +16,11 @@
 
 package com.android.settings;
 
-import android.app.ActivityManagerNative;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.RemoteException;
+import android.os.SystemProperties;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.view.View;
@@ -56,11 +55,7 @@ public class BugreportPreference extends DialogPreference {
     @Override
     public void onClick(DialogInterface dialog, int which) {
         if (which == DialogInterface.BUTTON_POSITIVE) {
-            try {
-                ActivityManagerNative.getDefault().requestBugReport();
-            } catch (RemoteException e) {
-                // ignore
-            }
+            SystemProperties.set("ctl.start", "bugreport");
         }
     }
 }

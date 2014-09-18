@@ -21,18 +21,13 @@
 
     <PreferenceCategory
             android:key="category_volume"
-            android:title="@string/title_tile_volume"/>
+            android:title="@string/volume"/>
 
     <com.android.settings.RingerVolumePreference
             android:key="ring_volume"
             android:title="@string/all_volume_title"
             android:persistent="false"
             android:streamType="ring" />
-            
-    <PreferenceScreen
-        android:key="volume_steps_settings"
-        android:fragment="com.android.settings.temasek.VolumeSteps"
-        android:title="@string/volume_steps_title" />
 
     <ListPreference
             android:key="ring_mode"
@@ -40,21 +35,16 @@
             android:entries="@array/ring_mode_entries"
             android:entryValues="@array/ring_mode_values" />
 
+    <PreferenceScreen
+            android:key="volume_steps"
+            android:fragment="com.android.settings.ldroid.VolumeSteps"
+            android:title="@string/volume_steps_title" />
+
     <ListPreference
             android:key="volume_overlay"
             android:title="@string/volume_overlay_title"
             android:entries="@array/volume_overlay_entries"
             android:entryValues="@array/volume_overlay_values" />
-
-    <com.android.settings.crdroid.SeekBarPreferenceCHOS
-            android:key="volume_panel_timeout"
-            android:title="@string/volume_panel_timeout_title"
-            android:summary="@string/volume_panel_timeout_summary"
-            android:max="10"
-            settings:min="1"
-            settings:unitsLeft=""
-            settings:unitsRight="sec"
-            android:persistent="false" />
 
     <PreferenceCategory
             android:key="category_automation_effects"
@@ -63,20 +53,13 @@
     <!-- Quiet hours -->
     <PreferenceScreen
             android:key="quiet_hours"
-            android:fragment="com.android.settings.cyanogenmod.QuietHours"
+            android:fragment="com.android.settings.ldroid.QuietHours"
             android:title="@string/quiet_hours_title" />
 
     <!-- DSP Manager -->
     <Preference
             android:key="musicfx"
             android:title="@string/musicfx_title" />
-
-    <!-- Headset -->
-    <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
-            android:key="headset_connect_player"
-            android:title="@string/headset_connect_player_title"
-            android:summary="@string/headset_connect_player_summary"
-            android:defaultValue="false" />
 
     <PreferenceCategory
             android:key="category_calls_and_notification"
@@ -94,7 +77,7 @@
             android:key="vibrate_when_ringing"
             android:title="@string/vibrate_when_ringing_title" />
 
-    <com.android.settings.cyanogenmod.IncreasingRingPreference
+    <com.android.settings.ldroid.IncreasingRingPreference
             android:key="increasing_ring"
             android:title="@string/increasing_ring_title"
             android:dialogTitle="@string/increasing_ring_title"
@@ -144,15 +127,15 @@
             android:defaultValue="true" />
 
     <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
+            android:key="camera_sounds"
+            android:title="@string/camera_sounds_title"
+            android:summary="@string/camera_sounds_summary"
+            android:defaultValue="true" />
+
+    <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
             android:key="haptic_feedback_enabled"
             android:title="@string/haptic_feedback_enable_title"
             android:defaultValue="true" />
-
-    <com.android.settings.hardware.VibratorIntensity
-            android:key="vibration_intensity"
-            android:title="@string/vibrator_intensity_title"
-            android:dialogTitle="@string/vibrator_intensity_title"
-            android:persistent="false" />
 
     <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
             android:key="volume_adjust_sounds_enabled"

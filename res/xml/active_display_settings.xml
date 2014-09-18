@@ -82,7 +82,7 @@
         android:entryValues="@array/ad_redisplay_values"
         android:dependency="ad_enable"/>
 
-    <com.carbon.fibers.chameleonos.SeekBarPreference
+    <com.android.settings.ldroid.SeekBarPreference
         android:key="ad_annoying"
         android:persistent="false"
         android:title="@string/ad_annoying_title"
@@ -118,14 +118,14 @@
             android:summary="@string/ad_show_ampm_summary"
             android:dependency="ad_enable"/>
 
-        <com.android.settings.crdroid.AppMultiSelectListPreference
+        <com.android.settings.ldroid.AppMultiSelectListPreference
             android:key="ad_excluded_apps"
             android:persistent="false"
             android:title="@string/ad_excluded_apps_title"
             android:summary="@string/ad_excluded_apps_summary"
             android:dependency="ad_enable" />
 
-        <com.android.settings.crdroid.AppMultiSelectListPreference
+        <com.android.settings.ldroid.AppMultiSelectListPreference
             android:key="ad_privacy_apps"
             android:persistent="false"
             android:title="@string/ad_privacy_apps_title"
