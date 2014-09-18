@@ -41,10 +41,9 @@ import com.android.settings.Utils;
 public class Download extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     Preference mPAGapps;
-    Preference mBanksGapps;
+    Preference mSlimGapps;
     Preference mXposed;
     Preference mXposedMod;
-    Preference mGoogleCamera;
     Preference mPhilzTouch;
 
     @Override
@@ -56,10 +55,9 @@ public class Download extends SettingsPreferenceFragment implements OnPreference
         final ContentResolver resolver = getActivity().getContentResolver();
 
         mPAGapps = findPreference("pa_gapps");
-        mBanksGapps = findPreference("banks_gapps");
+        mSlimGapps = findPreference("slim_gapps");
         mXposed = findPreference("xposed");
         mXposedMod = findPreference("xposed_mod");
-        mGoogleCamera = findPreference("google_camera");
 	mPhilzTouch = findPreference ("philz_touch");
     }
 
@@ -71,12 +69,12 @@ public class Download extends SettingsPreferenceFragment implements OnPreference
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mPAGapps) {
-            Uri uri = Uri.parse("http://goo.gl/3TR6AN");
+            Uri uri = Uri.parse("http://goo.gl/n9wg85");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
             return true;
-        } else if (preference == mBanksGapps) {
-            Uri uri = Uri.parse("http://goo.gl/Pt6DoB");
+        } else if (preference == mSlimGapps) {
+            Uri uri = Uri.parse("http://goo.gl/vJV2Tq");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
             return true;
@@ -90,13 +88,8 @@ public class Download extends SettingsPreferenceFragment implements OnPreference
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
             return true;
-        } else if (preference == mGoogleCamera) {
-            Uri uri = Uri.parse("http://goo.gl/9ADfbH");
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
-            return true;
         } else if (preference == mPhilzTouch) {
-            Uri uri = Uri.parse("http://goo.gl/hZAzTm");
+            Uri uri = Uri.parse("http://goo.gl/bS8XKw");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
             return true;

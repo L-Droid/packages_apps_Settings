@@ -27,9 +27,9 @@
         android:summary="@string/pagapps_summary" />
 
     <Preference
-        android:key="banks_gapps"
-        android:title="@string/banksgapps_title"
-        android:summary="@string/banksgapps_summary" />
+        android:key="slim_gapps"
+        android:title="@string/slim_gapps_title"
+        android:summary="@string/slim_gapps_summary" />
 
     </PreferenceCategory>
 
@@ -58,11 +58,6 @@
     <PreferenceCategory
         android:key="misc_category_title"
         android:title="@string/misc_category_title">
-
-    <Preference
-        android:key="google_camera"
-        android:title="@string/google_camera_title"
-        android:summary="@string/google_camera_summary" />
 
     <Preference
         android:key="philz_touch"
