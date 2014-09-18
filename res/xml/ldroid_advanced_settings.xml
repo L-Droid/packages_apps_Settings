@@ -52,13 +52,6 @@
         android:title="@string/init_d_title"
         android:summary="@string/header_summary_init_d" />  
 
-        <ListPreference
-            android:key="media_scanner_on_boot"
-            android:title="@string/media_scanner_on_boot_title"
-            android:persistent="false"
-            android:entries="@array/media_scanner_on_boot_entries"
-            android:entryValues="@array/media_scanner_on_boot_values" />
-
     <PreferenceScreen
         android:title="@string/superuser"
         android:fragment="com.koushikdutta.superuser.PolicyNativeFragment" />
@@ -66,7 +59,7 @@
     <PreferenceScreen
         android:id="@+id/system_app_remover"
         android:title="@string/sizer_title"
-        android:fragment="com.android.settings.liquid.SystemappRemover" />
+        android:fragment="com.android.settings.ldroid.SystemappRemover" />
 
     <!-- Wakelock blocker -->
     <PreferenceScreen

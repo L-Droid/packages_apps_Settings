@@ -21,11 +21,6 @@
             android:persistent="true" />
 
         <PreferenceScreen
-            android:key="installer_settings"
-            android:title="@string/installer_title"
-            android:fragment="com.android.settings.ldroid.installer.InstallerSettingsFragment" />
-
-        <PreferenceScreen
             android:key="recent_panel"
             android:title="@string/recent_panel_title"
             android:summary="@string/recent_panel_summary"
@@ -40,11 +35,6 @@
             android:key="show_cpu_info"
             android:title="@string/show_cpu_info"
             android:summary="@string/show_cpu_info_summary"/>     
-
-        <PreferenceScreen
-            android:key="more_device_settings"
-            android:title="@string/more_device_controls_title"
-            android:fragment="com.android.settings.ldroid.MoreDeviceSettings" />
 
     </PreferenceCategory>
 

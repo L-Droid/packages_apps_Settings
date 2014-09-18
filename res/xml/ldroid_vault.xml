@@ -84,7 +84,7 @@
     <PreferenceScreen
         android:key="circle_appbar"
         android:fragment="com.android.settings.ldroid.CircleAppBar"
-        android:title="@string/category_app_circle_bar_title"
+        android:title="@string/app_circle_bar_title"
         android:icon="@drawable/ic_wps_dark" />
 
     <!-- Look and feel -->

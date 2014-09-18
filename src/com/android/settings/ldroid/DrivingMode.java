@@ -40,7 +40,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.android.settings.ldroid.SeekBarPreference;
+import com.android.settings.ldroid.SeekBarPreferenceCHOS;
 import com.android.settings.ldroid.AppMultiSelectListPreference;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.tts.IntentReceiver;
@@ -75,7 +75,7 @@ public class DrivingMode extends SettingsPreferenceFragment implements
     private static final int MENU_RESET = Menu.FIRST;
 
     private SwitchPreference mEnableVoiceTTS;
-    private SeekBarPreference mVoiceVolume;
+    private SeekBarPreferenceCHOS mVoiceVolume;
     private CheckBoxPreference mEnableVoiceTTScall;
     private CheckBoxPreference mEnableVoiceTTSsms;
     private CheckBoxPreference mEnableVoiceTTSsmsRead;
@@ -107,7 +107,7 @@ public class DrivingMode extends SettingsPreferenceFragment implements
         mEnableVoiceTTS.setChecked(mShareprefs.getBoolean(IntentReceiver.ENABLED, false));
         mEnableVoiceTTS.setOnPreferenceChangeListener(this);
 
-        mVoiceVolume = (SeekBarPreference) prefSet.findPreference(KEY_VOICE_TTS_VOLUME);
+        mVoiceVolume = (SeekBarPreferenceCHOS) prefSet.findPreference(KEY_VOICE_TTS_VOLUME);
         mVoiceVolume.setValue((mShareprefs.getInt(IntentReceiver.VOICE_VOLUME, 8) * MULTIPLIER_VOLUME));
         mVoiceVolume.setOnPreferenceChangeListener(this);
 

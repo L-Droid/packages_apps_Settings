@@ -82,7 +82,7 @@
         android:entryValues="@array/ad_redisplay_values"
         android:dependency="ad_enable"/>
 
-    <com.android.settings.ldroid.SeekBarPreference
+    <com.android.settings.ldroid.SeekBarPreferenceCHOS
         android:key="ad_annoying"
         android:persistent="false"
         android:title="@string/ad_annoying_title"
@@ -158,7 +158,7 @@
             android:entryValues="@array/ad_timeout_values"
             android:dependency="ad_enable"/>
 
-        <com.android.settings.cyanogenmod.SeekBarPreference
+        <com.android.settings.ldroid.SeekBarPreferenceCHOS
             android:key="ad_brightness"
             android:persistent="false"
             android:title="@string/ad_brightness_title"

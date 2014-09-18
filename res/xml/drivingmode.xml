@@ -29,7 +29,7 @@
         android:title="@string/tts_settings_title"
         android:dependency="voice_tts"/>
 
-    <com.android.settings.ldroid.SeekBarPreference
+    <com.android.settings.ldroid.SeekBarPreferenceCHOS
         android:key="voice_tts_volume"
         android:dependency="voice_tts"
         android:persistent="false"
