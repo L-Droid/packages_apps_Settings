@@ -1368,4 +1368,8 @@
     <string name="time_ten_to">Ten till</string>
     <string name="time_five_to">Five till</string>
 
+    <!-- Sunlight readability enhancement screen -->
+    <string name="sunlight_enhancement_title">Sunlight enhancement</string>
+    <string name="sunlight_enhancement_summary">Enhance display brightness and readability under bright sunlight</string>
+
 </resources>
