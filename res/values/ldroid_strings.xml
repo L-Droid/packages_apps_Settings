@@ -87,6 +87,7 @@
     <string name="advanced_settings">Advanced settings</string>
     <string name="misc_short">Misc</string>
     <string name="custom_app_icon_successfully">"'s icon set successfully!"</string>
+    <string name="recent_panel_settings_title" >Recent panel settings</string>
     <string name="text_on">On</string>
     <string name="text_off">Off</string>
     <string name="use_custom_app_title">Use custom application</string>
@@ -1371,5 +1372,42 @@
     <!-- Sunlight readability enhancement screen -->
     <string name="sunlight_enhancement_title">Sunlight enhancement</string>
     <string name="sunlight_enhancement_summary">Enhance display brightness and readability under bright sunlight</string>
+
+    <!--  Recent clear all -->
+    <string name="recent_clear_all_button">Recent clear all button</string>
+    <string name="show_recent_clear_all_button_title">Show clear all button</string>
+    <string name="show_recent_clear_all_button_summary">Tick to show or untick to hide the clear all button within the recent applications screen</string>
+    <string name="recent_clear_all_button_location_title">Clear all button position</string>
+    <string name="recent_clear_all_button_location_summary">Choose in which corner the clear all recent apps button is shown</string>
+    <string name="recent_clear_all_button_location_top_left">Top left</string>
+    <string name="recent_clear_all_button_location_top_right">Top right</string>
+    <string name="recent_clear_all_button_location_bottom_left">Bottom left</string>
+    <string name="recent_clear_all_button_location_bottom_right">Bottom right</string>
+
+    <!-- Custom Recent Settings -->
+    <string name="custom_recent_title">Switch Recent styles</string>
+    <string name="custom_recent_summary">Tick to Slim recent or untick for stock recent. TICKING OR UNTICKING THIS BOX WILL RESTART YOUR SYSTEMUI</string>
+
+    <!-- Recent panel -->
+    <string name="slim_recent_panel_category">Slim recent apps panel</string>
+    <string name="recent_panel_scale_title">Size</string>
+    <string name="recent_panel_scale_summary">Recent apps panel size in percent</string>
+    <string name="recent_panel_100">100% (default)</string>
+    <string name="recent_panel_85">85%</string>
+    <string name="recent_panel_70">70%</string>
+    <string name="recent_panel_expanded_mode_title">Expanded mode</string>
+    <string name="recent_panel_expanded_mode_summary">Recent tasks expanded preview mode</string>
+    <string name="recent_panel_expanded_mode_auto">Auto (default)</string>
+    <string name="recent_panel_expanded_mode_always">Always</string>
+    <string name="recent_panel_expanded_mode_never">Never</string>
+    <string name="recent_panel_show_topmost_title">Show topmost task</string>
+    <string name="recent_panel_show_topmost_summary">Don\'t exclude the topmost task in recents view</string>
+    <string name="recent_panel_bg_color_title">Panel background color</string>
+    <string name="recent_card_bg_color_title">Card background color</string>
+    <string name="recent_card_text_color_title">Card text color</string>
+
+    <!-- ATTENTION: RTL languages need to replace left with right -->
+    <string name="recent_panel_lefty_mode_title">Show on the left edge</string>
+    <string name="recent_panel_lefty_mode_summary">Show recent apps panel on the left edge.</string>
 
 </resources>
