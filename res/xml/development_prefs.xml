@@ -332,6 +332,11 @@
             android:title="@string/show_all_anrs"
             android:summary="@string/show_all_anrs_summary"/>
 
+        <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
+            android:key="disable_fc_notifications"
+            android:title="@string/disable_fc_notifications_title"
+            android:summary="@string/disable_fc_notifications_summary" />
+
      </PreferenceCategory>
 
 </PreferenceScreen>
