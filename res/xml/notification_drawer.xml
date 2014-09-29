@@ -67,6 +67,11 @@
          android:inputType="textNoSuggestions"
          android:persistent="false" />
 
+    <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
+         android:key="notification_brightness_slider"
+         android:title="@string/notification_drawer_brightness_slider_title"
+         android:defaultValue="false" />
+
     <PreferenceCategory
         android:title="@string/category_quick_access" >
 
