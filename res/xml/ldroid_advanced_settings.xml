@@ -21,7 +21,8 @@
 
     <PreferenceScreen
         android:key="devicesettings_app"
-        android:title="@string/device_settings_title">
+        android:title="@string/device_settings_title"
+        android:summary="@string/device_sumary">
         <intent
             android:action="com.cyanogenmod.action.LAUNCH_DEVICE_SETTINGS"
             android:targetPackage="com.cyanogenmod.settings.device"
@@ -31,18 +32,21 @@
     <PreferenceScreen
         android:key="hfm_settings"
         android:title="@string/hfm_pref_screen_title"
+        android:summary="@string/adblocker_summary"
         android:fragment="com.android.settings.ldroid.hfm.HfmSettings" />
 
-    <!-- Wakelock blocker -->
+    <!-- Battery saver -->
     <PreferenceScreen
         android:key="battery_saver"
         android:title="@string/battery_saver_title"
+        android:summary="@string/battery_saver_summary"
         android:fragment="com.android.settings.ldroid.batterysaver.BatterySaverSettings" />
 
     <!-- Propmodder -->
     <PreferenceScreen
         android:key="buildprop_modder"
         android:title="@string/propmodder_title"
+        android:summary="@string/build_prop_summary"
         android:fragment="com.android.settings.ldroid.PropModder"/>
 
     <!-- Init.d -->
@@ -50,21 +54,24 @@
         android:id="@+id/initD"
         android:fragment="com.android.settings.ldroid.InitD"
         android:title="@string/init_d_title"
-        android:summary="@string/header_summary_init_d" />  
+        android:summary="@string/initd_summary" />  
 
     <PreferenceScreen
         android:title="@string/superuser"
+        android:summary="@string/superuser_summary"
         android:fragment="com.koushikdutta.superuser.PolicyNativeFragment" />
 		
     <PreferenceScreen
         android:id="@+id/system_app_remover"
         android:title="@string/sizer_title"
+        android:summary="@string/system_app_remover_summary"
         android:fragment="com.android.settings.ldroid.SystemappRemover" />
 
     <!-- Wakelock blocker -->
     <PreferenceScreen
         android:key="wakelock_blocker"
         android:title="@string/wakelock_blocker"
+        android:summary="@string/wakelock_blocker_summary"
         android:fragment="com.android.settings.ldroid.WakeLockBlocker" />
 
 </PreferenceScreen>

@@ -98,6 +98,17 @@
     <string name="dpi">DPI</string>
     <string name="apps">Apps</string>
 
+    <!-- String summaries -->
+    <string name="restart_systemui_summary">Restarts the system user interface</string>
+    <string name="device_sumary">Fine tune device settings</string>
+    <string name="adblocker_summary">Internally block ads→</string>
+    <string name="system_app_remover_summary">Remove system applications</string>
+    <string name="initd_summary">Implement various scripting tweaks</string>
+    <string name="build_prop_summary">Adjust build prop values</string>
+    <string name="battery_saver_summary">Control radios and processor to conserve battery</string>
+    <string name="wakelock_blocker_summary">Prevent wakelocks and allow your phone to sleep</string>
+    <string name="superuser_summary">Control superuser settings</string>
+
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
     <string name="press_color_to_apply">Press on color to apply</string>
@@ -786,10 +797,13 @@
     <string name="lockscreen_battery_status_alwayson">Always on</string>
     <string name="lockscreen_battery_status_alwaysoff">Always off</string>
 
+    <string name="expanded_desktop_style">Expanded desktop style</string>
     <string name="power_menu_expanded_desktop">Expanded desktop</string>
     <string name="expanded_desktop_disabled">Disabled</string>
     <string name="expanded_desktop_status_bar">Status bar visible</string>
     <string name="expanded_desktop_no_status_bar">Status bar hidden</string>
+    <string name="expanded_desktop_system_bars_visibility">Disable on lock screen</string>
+    <string name="expanded_desktop_system_bars_visibility_summary">Show status and navigation bar on lock screen during expanded desktop mode</string>
 
     <string name="battery_around_lockscreen_ring">Battery level around lock ring</string>
 
@@ -1416,5 +1430,18 @@
     <!-- Disable FC Notifications -->
     <string name="disable_fc_notifications_title">Disable FC Notifications</string>
     <string name="disable_fc_notifications_summary">This will hide all force close notifications</string>
+
+    <!-- Custom density -->
+    <string name="custom_density_title">Custom density</string>
+    <string name="custom_density">Custom</string>
+    <string name="set_custom_density_title">Set custom density</string>
+    <string name="set_custom_density_set">Set</string>
+    <string name="custom_density_summary_invalid">"INVALID DENSITY!"</string>
+    <string name="current_lcd_density">"Current density: "</string>
+    <string name="dpi">DPI</string>
+
+    <!-- On-The-Go -->
+    <string name="power_menu_onthego_title">On-The-Go Mode</string>
+    <string name="title_tile_onthego">On-The-Go</string>
 
 </resources>

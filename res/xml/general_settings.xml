@@ -9,16 +9,10 @@
         android:title="@string/general_settings_style_title">
 
     <ListPreference
-            android:key="expanded_desktop"
-            android:title="@string/power_menu_expanded_desktop"
-            android:entries="@array/expanded_desktop_entries"
-            android:entryValues="@array/expanded_desktop_values"
-            android:persistent="false" />
-
-    <CheckBoxPreference
-            android:key="expanded_desktop_no_navbar"
-            android:title="@string/power_menu_expanded_desktop"
-            android:persistent="true" />
+        android:key="lcd_density"
+        android:title="@string/custom_density_title"
+        android:entries="@array/lcd_density_entries"
+        android:entryValues="@array/lcd_density_entries" />
 
         <PreferenceScreen
             android:key="recent_panel"
@@ -28,13 +22,33 @@
 
         <!-- Restart SystemUI -->
         <Preference android:key="restart_systemui"
-            android:title="@string/restart_systemui" />
+            android:title="@string/restart_systemui"
+            android:summary="@string/restart_systemui_summary" />
 
 	<!-- CPU info overlay -->
 	<CheckBoxPreference
             android:key="show_cpu_info"
             android:title="@string/show_cpu_info"
             android:summary="@string/show_cpu_info_summary"/>     
+
+    </PreferenceCategory>
+
+        <PreferenceCategory
+            android:key="expanded_desktop_category"
+            android:title="@string/power_menu_expanded_desktop" >
+
+            <ListPreference
+                android:key="expanded_desktop"
+                android:title="@string/expanded_desktop_style"
+                android:entries="@array/expanded_desktop_entries"
+                android:entryValues="@array/expanded_desktop_values"
+                android:persistent="false" />
+
+            <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
+                android:key="expanded_desktop_system_bars_visibility"
+                android:title="@string/expanded_desktop_system_bars_visibility"
+                android:summary="@string/expanded_desktop_system_bars_visibility_summary"
+                android:defaultValue="false" />
 
     </PreferenceCategory>
 

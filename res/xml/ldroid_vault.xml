@@ -62,13 +62,6 @@
         android:fragment="com.android.settings.ldroid.lockscreen.ActiveDisplaySettings"
         android:icon="@drawable/ic_ldroid_active_display" />
 
-    <!-- Halo -->
-    <PreferenceScreen
-        android:key="halo_settings"
-        android:title="@string/halo_settings_title"
-        android:fragment="com.android.settings.ldroid.Halo"
-        android:icon="@drawable/ic_settings_halo" />
-
     <!-- Headsup -->
     <PreferenceScreen
         android:key="headsup_settings"
