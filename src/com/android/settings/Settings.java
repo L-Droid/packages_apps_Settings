@@ -383,7 +383,8 @@ public class Settings extends PreferenceActivity
         com.android.settings.cyanogenmod.PrivacySettings.class.getName(),
         com.android.settings.ldroid.quicksettings.QuickSettingsTiles.class.getName(),
         com.android.settings.ldroid.QuietHours.class.getName(),
-        ThemeSettings.class.getName()
+        ThemeSettings.class.getName(),
+        NetworkTraffic.class.getName()
     };
 
     @Override

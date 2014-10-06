@@ -751,15 +751,6 @@
     <string name="show_lte_or_fourgee_title">Use 4G icon</string>
     <string name="show_lte_or_fourgee_summary">Switch the network indicator from LTE to 4G</string>
 
-    <!-- Network Traffic -->
-    <string name="color_default">Default</string>
-    <string name="status_bar_show_network_stats_title">Show network speeds</string>
-    <string name="status_bar_show_network_stats_summary">Show network speeds in statusbar</string>
-    <string name="status_bar_network_stats_update_title">Update frequency</string>
-    <string name="status_bar_network_stats_update_summary">How often is indicator updated</string>
-    <string name="status_bar_network_stats_color_title">Network speeds text color</string>
-    <string name="status_bar_network_stats_color_summary">Network speeds text color in statusbar</string>
-
     <!-- Notification drawer background -->
     <string name="notification_style_title">Style</string>
     <string name="notification_style_summary">Change your notification drawer style</string>
@@ -1443,5 +1434,27 @@
     <!-- On-The-Go -->
     <string name="power_menu_onthego_title">On-The-Go Mode</string>
     <string name="title_tile_onthego">On-The-Go</string>
+
+    <!-- Network traffic -->
+    <string name="network_traffic_title">Network traffic</string>
+    <string name="show_network_traffic_state">Status bar traffic monitor</string>
+    <string name="show_network_traffic_unit">Display unit</string>
+    <string name="show_network_traffic_frequency">Update interval</string>
+    <string name="show_network_traffic_disable">Disabled</string>
+    <string name="show_network_traffic_up">Outgoing</string>
+    <string name="show_network_traffic_down">Incoming</string>
+    <string name="show_network_traffic_all">Outgoing and incoming</string>
+    <string name="show_network_traffic_bit">Bits per second</string>
+    <string name="show_network_traffic_byte">Bytes per second</string>
+    <string name="show_network_traffic_500">500 ms</string>
+    <string name="show_network_traffic_1000">1000 ms</string>
+    <string name="show_network_traffic_1500">1500 ms</string>
+    <string name="show_network_traffic_2000">2000 ms</string>
+    <string name="network_traffic_autohide">Auto hide</string>
+    <string name="network_traffic_autohide_summary">Hide the traffic monitor when there is no activity</string>
+    <string name="network_traffic_autohide_threshold">Inactivity threshold</string>
+    <string name="network_traffic_color_style">Color style</string>
+    <string name="network_traffic_color_reset">Reset color</string>
+    <string name="network_traffic_color_reset_message">Reset network traffic color to default?</string>
 
 </resources>
