@@ -1273,6 +1273,10 @@
     <string-array name="entries_sleep">
         <item>disable</item>
         <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
     </string-array>
 
     <!-- Halo -->
