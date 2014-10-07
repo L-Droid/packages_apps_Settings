@@ -92,6 +92,7 @@
     <string name="text_off">Off</string>
     <string name="use_custom_app_title">Use custom application</string>
     <string name="use_custom_app_summary">Use custom application instead of the recent applications dialog</string>
+    <string name="trds_default_color">TRDS default</string>
     <string name="group_applications">Applications</string>
     <string name="choose_application">Choose application</string>
     <string name="select_application">Select application</string>
