@@ -91,7 +91,6 @@ import com.android.settings.ldroid.lockscreen.LockscreenInterface;
 import com.android.settings.ldroid.ButtonSettings;
 import com.android.settings.ldroid.StatusBar;
 import com.android.settings.ldroid.NotificationDrawer;
-import com.android.settings.ldroid.fragments.NetworkTraffic;
 import com.android.settings.location.LocationEnabler;
 import com.android.settings.location.LocationSettings;
 import com.android.settings.net.MobileDataEnabler;
@@ -385,7 +384,6 @@ public class Settings extends PreferenceActivity
         com.android.settings.ldroid.quicksettings.QuickSettingsTiles.class.getName(),
         com.android.settings.ldroid.QuietHours.class.getName(),
         ThemeSettings.class.getName(),
-        NetworkTraffic.class.getName(),
         com.android.settings.wifi.WifiApSettings.class.getName()
     };
 
