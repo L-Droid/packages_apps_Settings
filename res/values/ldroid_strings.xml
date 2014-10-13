@@ -103,7 +103,7 @@
     <!-- String summaries -->
     <string name="restart_systemui_summary">Restarts the system user interface</string>
     <string name="device_sumary">Fine tune device settings</string>
-    <string name="adblocker_summary">Internally block ads→</string>
+    <string name="adblocker_summary">Internally block ads</string>
     <string name="system_app_remover_summary">Remove system applications</string>
     <string name="initd_summary">Implement various scripting tweaks</string>
     <string name="build_prop_summary">Adjust build prop values</string>
